@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard Day Trade WINFUT</title>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #020617;
+      color: #e5e7eb;
+    }
+    header {
+      padding: 14px 16px;
+      background: #020617;
+      border-bottom: 1px solid #1f2937;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    header p {
+      margin: 4px 0 0;
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+    main {
+      padding: 12px 12px 32px;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    .panel {
+      background: #020617;
+      border-radius: 12px;
+      padding: 14px 14px 16px;
+      margin-bottom: 14px;
+      border: 1px solid #1f2937;
+    }
+    .panel-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #e5e7eb;
+    }
+    .panel-sub {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-bottom: 8px;
+    }
+    .file-input-row,
+    .data-source-row {
+      font-size: 0.85rem;
+      color: #9ca3af;
+    }
+    .filters-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.85rem;
+    }
+    @media (min-width: 900px) {
+      .filters-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px 18px;
+      }
+    }
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .filter-group label {
+      color: #9ca3af;
+      font-size: 0.78rem;
+    }
+    .filter-inline-label {
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+    .filter-group input[type="date"] {
+      background: #020617;
+      border: 1px solid #374151;
+      border-radius: 6px;
+      padding: 5px 8px;
+      color: #e5e7eb;
+      font-size: 0.85rem;
+    }
+    .checkbox-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .chip-check {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      border-radius: 999px;
+      border: 1px solid #374151;
+      padding: 3px 10px;
+      font-size: 0.8rem;
+      background: #020617;
+    }
+    .chip-check input {
+      accent-color: #22c55e;
+    }
+    .filter-hint {
+      font-size: 0.75rem;
+      color: #6b7280;
+      margin-top: 4px;
+    }
+    .filter-actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    button {
+      border-radius: 6px;
+      border: 1px solid #4b5563;
+      background: #111827;
+      color: #e5e7eb;
+      padding: 6px 10px;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1f2937;
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+      gap: 10px;
+    }
+    .kpi-card {
+      background: #020617;
+      border-radius: 10px;
+      padding: 9px 10px;
+      border: 1px solid #1f2937;
+    }
+    .kpi-label {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      margin-bottom: 4px;
+    }
+    .kpi-value {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+    .kpi-sub {
+      font-size: 0.75rem;
+      color: #6b7280;
+      margin-top: 2px;
+    }
+    .charts-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 14px;
+    }
+    @media (min-width: 1100px) {
+      .charts-grid-2col {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    .chart-panel {
+      background: #020617;
+      border-radius: 12px;
+      border: 1px solid #1f2937;
+      padding: 10px 12px 4px;
+    }
+    .chart-title {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #e5e7eb;
+      margin-bottom: 4px;
+    }
+    .chart-subtitle {
+      font-size: 0.75rem;
+      color: #6b7280;
+      margin-bottom: 6px;
+    }
+    .chart-container {
+      width: 100%;
+      height: 260px;
+    }
+    @media (max-width: 600px) {
+      .chart-container {
+        height: 220px;
+      }
+    }
+    .note {
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-top: 6px;
+    }
+    .empty-msg {
+      font-size: 0.85rem;
+      color: #9ca3af;
+      margin-top: 8px;
+    }
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Dashboard Day Trade – WINFUT</h1>
+  <p>Conectado a uma planilha fixa do Google Sheets (CSV publicado).</p>
+</header>
+
+<main>
+  <!-- Fonte de dados -->
+  <section class="panel">
+    <div class="panel-title">1. Fonte de dados</div>
+    <p class="panel-sub">
+      Este dashboard lê automaticamente os dados da sua planilha publicada no Google Sheets.
+      Sempre que você atualizar a planilha, os dados serão recarregados na próxima vez que abrir ou atualizar esta página.
+    </p>
+    <div id="loadStatus" class="note"></div>
+  </section>
+
+  <!-- Filtros -->
+  <section class="panel">
+    <div class="panel-title">2. Filtros</div>
+    <div class="filters-grid">
+      <!-- Lado -->
+      <div class="filter-group">
+        <label>Lado</label>
+        <div class="checkbox-row">
+          <label class="chip-check">
+            <input type="checkbox" id="ladoCompra" checked />
+            <span>Compra (C)</span>
+          </label>
+          <label class="chip-check">
+            <input type="checkbox" id="ladoVenda" checked />
+            <span>Venda (V)</span>
+          </label>
+        </div>
+        <div class="filter-hint">
+          Se nada estiver marcado, considera compra e venda.
+        </div>
+      </div>
+
+      <!-- Datas -->
+      <div class="filter-group">
+        <label for="filtroDataIni">Data inicial</label>
+        <input type="date" id="filtroDataIni" />
+        <label for="filtroDataFim" style="margin-top:8px;">Data final</label>
+        <input type="date" id="filtroDataFim" />
+        <div id="rangeDatas" class="filter-hint" style="margin-top:8px;">
+          Período no arquivo: --/--/---- até --/--/----
+        </div>
+      </div>
+
+      <!-- Dias + Horas -->
+      <div class="filter-group">
+        <label>Dias da semana</label>
+        <div class="checkbox-row">
+          <label class="chip-check">
+            <input type="checkbox" id="diaSeg" checked />
+            <span>Segunda</span>
+          </label>
+          <label class="chip-check">
+            <input type="checkbox" id="diaTer" checked />
+            <span>Terça</span>
+          </label>
+          <label class="chip-check">
+            <input type="checkbox" id="diaQua" checked />
+            <span>Quarta</span>
+          </label>
+          <label class="chip-check">
+            <input type="checkbox" id="diaQui" checked />
+            <span>Quinta</span>
+          </label>
+          <label class="chip-check">
+            <input type="checkbox" id="diaSex" checked />
+            <span>Sexta</span>
+          </label>
+        </div>
+        <div class="filter-hint">
+          Se nada estiver marcado, considera todos os dias úteis.
+        </div>
+
+        <label style="margin-top:10px;">Horas do dia (9h às 16h)</label>
+        <div class="checkbox-row">
+          <label class="chip-check"><input type="checkbox" class="horaCheck" value="9" checked /><span>9h</span></label>
+          <label class="chip-check"><input type="checkbox" class="horaCheck" value="10" checked /><span>10h</span></label>
+          <label class="chip-check"><input type="checkbox" class="horaCheck" value="11" checked /><span>11h</span></label>
+          <label class="chip-check"><input type="checkbox" class="horaCheck" value="12" checked /><span>12h</span></label>
+          <label class="chip-check"><input type="checkbox" class="horaCheck" value="13" checked /><span>13h</span></label>
+          <label class="chip-check"><input type="checkbox" class="horaCheck" value="14" checked /><span>14h</span></label>
+          <label class="chip-check"><input type="checkbox" class="horaCheck" value="15" checked /><span>15h</span></label>
+          <label class="chip-check"><input type="checkbox" class="horaCheck" value="16" checked /><span>16h</span></label>
+        </div>
+        <div class="filter-hint">
+          Se nada estiver marcado, considera todas as horas de 9h a 16h.
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-actions">
+      <button id="btnAplicar">Aplicar filtros</button>
+      <button id="btnLimpar">Limpar filtros</button>
+    </div>
+  </section>
+
+  <!-- KPIs -->
+  <section class="panel">
+    <div class="panel-title">3. Visão geral da performance</div>
+    <div id="kpisArea" class="kpi-grid"></div>
+    <div id="kpiEmpty" class="empty-msg" style="display:none;">
+      Nenhuma operação encontrada com os filtros atuais.
+    </div>
+  </section>
+
+  <!-- Gráficos -->
+  <section class="panel">
+    <div class="panel-title">4. Gráficos e análises</div>
+
+    <div class="charts-grid">
+      <div class="chart-panel">
+        <div class="chart-title">Equity Curve (resultado acumulado)</div>
+        <div class="chart-subtitle">Mostra a evolução do saldo ao longo do tempo.</div>
+        <div id="equityChart" class="chart-container"></div>
+      </div>
+    </div>
+
+    <div class="charts-grid charts-grid-2col" style="margin-top:12px;">
+      <div class="chart-panel">
+        <div class="chart-title">Histograma dos resultados por operação</div>
+        <div class="chart-subtitle">Distribuição dos ganhos e perdas.</div>
+        <div id="histChart" class="chart-container"></div>
+      </div>
+
+      <div class="chart-panel">
+        <div class="chart-title">Boxplot – Compra vs Venda</div>
+        <div class="chart-subtitle">Compara a distribuição de resultados em cada lado.</div>
+        <div id="boxSideChart" class="chart-container"></div>
+      </div>
+    </div>
+
+    <div class="charts-grid charts-grid-2col" style="margin-top:12px;">
+      <div class="chart-panel">
+        <div class="chart-title">Média de resultado por hora</div>
+        <div class="chart-subtitle">Ajuda a identificar horários mais saudáveis.</div>
+        <div id="barHourMeanChart" class="chart-container"></div>
+      </div>
+
+      <div class="chart-panel">
+        <div class="chart-title">Soma de resultado por hora</div>
+        <div class="chart-subtitle">Mostra quanto cada horário contribuiu no total.</div>
+        <div id="barHourSumChart" class="chart-container"></div>
+      </div>
+    </div>
+
+    <div class="charts-grid charts-grid-2col" style="margin-top:12px;">
+      <div class="chart-panel">
+        <div class="chart-title">Boxplot – Resultados por hora</div>
+        <div class="chart-subtitle">Mostra a variabilidade de cada horário.</div>
+        <div id="boxHourChart" class="chart-container"></div>
+      </div>
+
+      <div class="chart-panel">
+        <div class="chart-title">Duração da operação × Resultado</div>
+        <div class="chart-subtitle">Ajuda a entender se ficar mais tempo na operação ajuda ou atrapalha.</div>
+        <div id="scatterDurChart" class="chart-container"></div>
+      </div>
+    </div>
+
+    <div class="charts-grid charts-grid-2col" style="margin-top:12px;">
+      <div class="chart-panel">
+        <div class="chart-title">Média de resultado por dia da semana</div>
+        <div class="chart-subtitle">Identifica dias mais consistentes.</div>
+        <div id="barWeekdayMeanChart" class="chart-container"></div>
+      </div>
+
+      <div class="chart-panel">
+        <div class="chart-title">Soma de resultado por dia da semana</div>
+        <div class="chart-subtitle">Mostra quais dias puxam o resultado para cima ou para baixo.</div>
+        <div id="barWeekdaySumChart" class="chart-container"></div>
+      </div>
+    </div>
+
+    <div class="charts-grid" style="margin-top:12px;">
+      <div class="chart-panel">
+        <div class="chart-title">Heatmap – Hora × Dia da semana (média de resultado)</div>
+        <div class="chart-subtitle">Mapa visual de onde a estratégia funciona melhor ou pior.</div>
+        <div id="heatmapChart" class="chart-container" style="height:320px;"></div>
+      </div>
+    </div>
+
+    <div id="chartsEmpty" class="empty-msg" style="display:none;">
+      Gráficos não exibidos porque não há operações com os filtros atuais.
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-title">Observações</div>
+    <p class="note">
+      - Os dados são lidos de uma planilha publicada no Google Sheets em formato CSV.<br/>
+      - A coluna <em>Res. Operação</em> é interpretada como pontos, com suporte a vírgula como separador decimal.<br/>
+      - A coluna <em>Abertura</em> é esperada no formato <code>DD/MM/AAAA HH:MM:SS</code>.
+    </p>
+  </section>
+</main>
+
+<script>
+const SHEETS_CSV_URL =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vQFh2JuvZ4fXChiYHNqJI4k4XtH_VVoR9Lu0jRH1BVcxoSX66YPGAjpSO4RMbQZv-oa3MUqKaxbjA8z/pub?gid=419607747&single=true&output=csv";
+
+/* ======== Helpers de parsing ======== */
+
+function parseNumberBR(str) {
+  if (!str) return null;
+  let s = String(str).trim();
+  if (!s) return null;
+  s = s.replace(/\./g, "").replace(",", ".");
+  const val = parseFloat(s);
+  return isNaN(val) ? null : val;
+}
+
+function parseTempoOperacaoToSeconds(str) {
+  if (!str) return null;
+  const s = String(str).trim().toLowerCase();
+  let total = 0;
+  const minMatch = s.match(/(\d+)\s*min/);
+  const secMatch = s.match(/(\d+)\s*s/);
+  if (minMatch) total += parseInt(minMatch[1], 10) * 60;
+  if (secMatch) total += parseInt(secMatch[1], 10);
+  if (!minMatch && !secMatch) return null;
+  return total;
+}
+
+function parseDateBR(str) {
+  if (!str) return null;
+  const parts = String(str).trim().split(" ");
+  if (parts.length < 2) return null;
+  const [d, m, y] = parts[0].split("/");
+  const [hh, mm, ss] = parts[1].split(":");
+  const day = parseInt(d, 10);
+  const month = parseInt(m, 10) - 1;
+  const year = parseInt(y, 10);
+  const hour = parseInt(hh, 10);
+  const minute = parseInt(mm, 10);
+  const second = parseInt(ss, 10);
+  return new Date(year, month, day, hour, minute, second);
+}
+
+function formatDateISO(date) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+}
+
+function formatDateBR(date) {
+  const d = String(date.getDate()).padStart(2, "0");
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const y = date.getFullYear();
+  return `${d}/${m}/${y}`;
+}
+
+function weekdayNameShort(idx) {
+  const names = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
+  return names[idx] || String(idx);
+}
+
+function weekdayName(idx) {
+  const names = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+  return names[idx] || String(idx);
+}
+
+/* ======== Estado global ======== */
+
+let allTrades = [];
+let currentFilteredTrades = [];
+
+/* ======== Parsing do CSV (separador ,) ======== */
+
+function parseCSV(text) {
+  const lines = text.split(/\r?\n/).filter(l => l.trim().length > 0);
+  if (lines.length < 2) {
+    throw new Error("CSV vazio ou sem conteúdo.");
+  }
+  const header = lines[0].split(",").map(h => h.trim());
+  const colIndex = {
+    abertura: header.indexOf("Abertura"),
+    lado: header.indexOf("Lado"),
+    resOperacao: header.indexOf("Res. Operação"),
+    tempo: header.indexOf("Tempo Operação")
+  };
+  if (colIndex.abertura === -1 || colIndex.lado === -1 || colIndex.resOperacao === -1) {
+    throw new Error("Não encontrei as colunas obrigatórias: Abertura, Lado, Res. Operação.");
+  }
+
+  const trades = [];
+  for (let i = 1; i < lines.length; i++) {
+    const line = lines[i];
+    if (!line || !line.trim()) continue;
+    const cols = line.split(",");
+    if (cols.length < header.length) continue;
+
+    const aberturaStr = cols[colIndex.abertura];
+    const ladoStr = cols[colIndex.lado];
+    const resOpStr = cols[colIndex.resOperacao];
+    const tempoStr = colIndex.tempo !== -1 ? cols[colIndex.tempo] : null;
+
+    const dt = parseDateBR(aberturaStr);
+    const resOp = parseNumberBR(resOpStr);
+    if (!dt || resOp === null) continue;
+
+    const dateISO = formatDateISO(dt);
+    const hour = dt.getHours();
+    const weekday = dt.getDay();
+    const durationSec = parseTempoOperacaoToSeconds(tempoStr);
+
+    trades.push({
+      rawIndex: i - 1,
+      aberturaStr,
+      lado: (ladoStr || "").trim(),
+      resOp,
+      tempoStr,
+      durationSec,
+      dt,
+      ts: dt.getTime(),
+      dateISO,
+      hour,
+      weekday,
+      weekdayName: weekdayName(weekday)
+    });
+  }
+
+  trades.sort((a, b) => a.ts - b.ts);
+  return trades;
+}
+
+/* ======== Filtros ======== */
+
+function getSelectedLados() {
+  const lados = [];
+  if (document.getElementById("ladoCompra").checked) lados.push("C");
+  if (document.getElementById("ladoVenda").checked) lados.push("V");
+  return lados;
+}
+
+function getSelectedWeekdays() {
+  const map = [
+    { id: "diaSeg", val: 1 },
+    { id: "diaTer", val: 2 },
+    { id: "diaQua", val: 3 },
+    { id: "diaQui", val: 4 },
+    { id: "diaSex", val: 5 }
+  ];
+  const selected = [];
+  map.forEach(m => {
+    if (document.getElementById(m.id).checked) selected.push(m.val);
+  });
+  return selected;
+}
+
+function getSelectedHours() {
+  const checks = Array.from(document.querySelectorAll(".horaCheck"));
+  const selected = checks.filter(c => c.checked).map(c => parseInt(c.value, 10));
+  return selected;
+}
+
+function applyFilters() {
+  if (!allTrades.length) {
+    currentFilteredTrades = [];
+    return;
+  }
+
+  const ladosSel = getSelectedLados();
+  const diasSel = getSelectedWeekdays();
+  const horasSel = getSelectedHours();
+
+  const dataIniStr = document.getElementById("filtroDataIni").value;
+  const dataFimStr = document.getElementById("filtroDataFim").value;
+
+  let dataIni = null;
+  let dataFim = null;
+  if (dataIniStr) dataIni = new Date(dataIniStr + "T00:00:00");
+  if (dataFimStr) dataFim = new Date(dataFimStr + "T23:59:59");
+
+  currentFilteredTrades = allTrades.filter(t => {
+    if (ladosSel.length > 0 && !ladosSel.includes(t.lado)) return false;
+
+    if (dataIni && t.dt < dataIni) return false;
+    if (dataFim && t.dt > dataFim) return false;
+
+    if (diasSel.length > 0 && !diasSel.includes(t.weekday)) return false;
+
+    if (horasSel.length > 0 && !horasSel.includes(t.hour)) return false;
+
+    return true;
+  });
+}
+
+/* ======== KPIs e métricas ======== */
+
+function sum(arr) {
+  return arr.reduce((acc, v) => acc + v, 0);
+}
+
+function mean(arr) {
+  if (!arr.length) return null;
+  return sum(arr) / arr.length;
+}
+
+function stdDev(arr) {
+  if (!arr.length) return null;
+  const m = mean(arr);
+  const variance = mean(arr.map(v => (v - m) * (v - m)));
+  return Math.sqrt(variance);
+}
+
+function computeKPIs(trades) {
+  const resList = trades.map(t => t.resOp);
+  const total = sum(resList);
+  const n = trades.length;
+
+  const wins = resList.filter(v => v > 0);
+  const losses = resList.filter(v => v < 0);
+  const zeros = resList.filter(v => v === 0);
+
+  const nWins = wins.length;
+  const nLoss = losses.length;
+  const nZeros = zeros.length;
+
+  const winrate = n ? (nWins / n) * 100 : null;
+  const expectancy = n ? total / n : null;
+
+  const sumWins = sum(wins);
+  const sumLossAbs = Math.abs(sum(losses));
+  const profitFactor = sumLossAbs > 0 ? sumWins / sumLossAbs : null;
+
+  const avg = mean(resList);
+  const sd = stdDev(resList);
+
+  let equity = [];
+  let running = 0;
+  let peak = 0;
+  let maxDD = 0;
+  for (let t of trades) {
+    running += t.resOp;
+    equity.push(running);
+    if (running > peak) peak = running;
+    const dd = peak - running;
+    if (dd > maxDD) maxDD = dd;
+  }
+
+  let maxConsecWins = 0;
+  let maxConsecLoss = 0;
+  let curWins = 0;
+  let curLoss = 0;
+  for (let v of resList) {
+    if (v > 0) {
+      curWins++;
+      curLoss = 0;
+    } else if (v < 0) {
+      curLoss++;
+      curWins = 0;
+    } else {
+      curWins = 0;
+      curLoss = 0;
+    }
+    if (curWins > maxConsecWins) maxConsecWins = curWins;
+    if (curLoss > maxConsecLoss) maxConsecLoss = curLoss;
+  }
+
+  const byDay = {};
+  for (let t of trades) {
+    if (!byDay[t.dateISO]) byDay[t.dateISO] = 0;
+    byDay[t.dateISO] += t.resOp;
+  }
+  const days = Object.keys(byDay);
+  const dailyVals = days.map(d => byDay[d]);
+  const mediaDia = mean(dailyVals);
+
+  return {
+    n,
+    total,
+    winrate,
+    expectancy,
+    profitFactor,
+    avg,
+    sd,
+    maxDD,
+    maxConsecWins,
+    maxConsecLoss,
+    mediaDia
+  };
+}
+
+function formatNumber(val, digits = 2) {
+  if (val === null || val === undefined || isNaN(val)) return "-";
+  return val.toLocaleString("pt-BR", {
+    minimumFractionDigits: digits,
+    maximumFractionDigits: digits
+  });
+}
+
+function renderKPIs(trades) {
+  const kpiArea = document.getElementById("kpisArea");
+  const empty = document.getElementById("kpiEmpty");
+  kpiArea.innerHTML = "";
+
+  if (!trades.length) {
+    empty.style.display = "block";
+    return;
+  }
+  empty.style.display = "none";
+
+  const k = computeKPIs(trades);
+
+  const cards = [
+    { label: "Resultado total (pontos)", value: formatNumber(k.total, 2) },
+    { label: "Número de operações", value: k.n },
+    {
+      label: "% operações vencedoras",
+      value: k.winrate !== null ? formatNumber(k.winrate, 1) + " %" : "-"
+    },
+    {
+      label: "Expectância por trade",
+      value: formatNumber(k.expectancy, 2),
+      sub: "Média de pontos por operação."
+    },
+    {
+      label: "Profit Factor",
+      value: k.profitFactor !== null ? formatNumber(k.profitFactor, 2) : "-",
+      sub: "Soma dos ganhos / soma das perdas."
+    },
+    {
+      label: "Média por operação",
+      value: formatNumber(k.avg, 2),
+      sub: "Resultado médio considerando todas as operações."
+    },
+    {
+      label: "Desvio padrão",
+      value: formatNumber(k.sd, 2),
+      sub: "Variabilidade dos resultados."
+    },
+    {
+      label: "Drawdown máximo",
+      value: formatNumber(k.maxDD, 2),
+      sub: "Maior queda a partir de um topo do equity."
+    },
+    {
+      label: "Máx. sequência de gains",
+      value: k.maxConsecWins,
+      sub: "Quantidade máxima de vitórias seguidas."
+    },
+    {
+      label: "Máx. sequência de losses",
+      value: k.maxConsecLoss,
+      sub: "Quantidade máxima de perdas seguidas."
+    },
+    {
+      label: "Média por dia",
+      value: formatNumber(k.mediaDia, 2),
+      sub: "Média do resultado somado por dia."
+    }
+  ];
+
+  for (let c of cards) {
+    const div = document.createElement("div");
+    div.className = "kpi-card";
+    div.innerHTML = `
+      <div class="kpi-label">${c.label}</div>
+      <div class="kpi-value">${c.value}</div>
+      ${c.sub ? `<div class="kpi-sub">${c.sub}</div>` : ""}
+    `;
+    kpiArea.appendChild(div);
+  }
+}
+
+/* ======== Gráficos ======== */
+
+function renderCharts(trades) {
+  const empty = document.getElementById("chartsEmpty");
+
+  if (!trades.length) {
+    empty.style.display = "block";
+    const ids = [
+      "equityChart","histChart","boxSideChart",
+      "barHourMeanChart","barHourSumChart",
+      "boxHourChart","scatterDurChart",
+      "barWeekdayMeanChart","barWeekdaySumChart",
+      "heatmapChart"
+    ];
+    ids.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        Plotly.purge(el);
+        el.innerHTML = "";
+      }
+    });
+    return;
+  }
+
+  empty.style.display = "none";
+
+  const sorted = [...trades].sort((a, b) => a.ts - b.ts);
+
+  /* Equity curve com suavização e cor dinâmica */
+  let equity = [];
+  let running = 0;
+  for (let t of sorted) {
+    running += t.resOp;
+    equity.push(running);
+  }
+
+  let above = [];
+  let below = [];
+  for (let i = 0; i < equity.length; i++) {
+    if (equity[i] >= 0) {
+      above.push(equity[i]);
+      below.push(null);
+    } else {
+      above.push(null);
+      below.push(equity[i]);
+    }
+  }
+
+  Plotly.newPlot("equityChart", [
+    {
+      x: sorted.map(t => t.dt),
+      y: above,
+      type: "scatter",
+      mode: "lines",
+      name: "Positivo",
+      line: { color: "#3b82f6", width: 2.4, shape: "spline" }
+    },
+    {
+      x: sorted.map(t => t.dt),
+      y: below,
+      type: "scatter",
+      mode: "lines",
+      name: "Negativo",
+      line: { color: "#ef4444", width: 2.4, shape: "spline" }
+    }
+  ], {
+    margin: { l: 40, r: 20, t: 20, b: 40 },
+    paper_bgcolor: "#020617",
+    plot_bgcolor: "#020617",
+    xaxis: {
+      title: "Tempo",
+      tickfont: { color: "#e5e7eb" },
+      titlefont: { color: "#e5e7eb" }
+    },
+    yaxis: {
+      title: "Pontos acumulados",
+      tickfont: { color: "#e5e7eb" },
+      titlefont: { color: "#e5e7eb" }
+    },
+    font: { color: "#e5e7eb" }
+  }, { responsive: true });
+
+  /* Histograma de resultados */
+  Plotly.newPlot("histChart", [{
+    x: trades.map(t => t.resOp),
+    type: "histogram",
+    name: "Resultados",
+    opacity: 0.9
+  }], {
+    margin: { l: 40, r: 20, t: 20, b: 40 },
+    paper_bgcolor: "#020617",
+    plot_bgcolor: "#020617",
+    xaxis: {
+      title: "Resultado por operação (pontos)",
+      tickfont: { color: "#e5e7eb" },
+      titlefont: { color: "#e5e7eb" }
+    },
+    yaxis: {
+      title: "Frequência",
+      tickfont: { color: "#e5e7eb" },
+      titlefont: { color: "#e5e7eb" }
+    },
+    font: { color: "#e5e7eb" }
+  }, { responsive: true });
+
+  /* Boxplot por lado */
+  const compraVals = trades.filter(t => t.lado === "C").map(t => t.resOp);
+  const vendaVals = trades.filter(t => t.lado === "V").map(t => t.resOp);
+
+  const sideTraces = [];
+  if (compraVals.length) {
+    sideTraces.push({ y: compraVals, type: "box", name: "Compra (C)" });
+  }
+  if (vendaVals.length) {
+    sideTraces.push({ y: vendaVals, type: "box", name: "Venda (V)" });
+  }
+
+  Plotly.newPlot("boxSideChart", sideTraces, {
+    margin: { l: 40, r: 20, t: 20, b: 40 },
+    paper_bgcolor: "#020617",
+    plot_bgcolor: "#020617",
+    yaxis: {
+      title: "Resultado (pontos)",
+      tickfont: { color: "#e5e7eb" },
+      titlefont: { color: "#e5e7eb" }
+    },
+    font: { color: "#e5e7eb" }
+  }, { responsive: true });
+
+  /* Agrupamento por hora */
+  const byHour = {};
+  for (let t of trades) {
+    if (!byHour[t.hour]) byHour[t.hour] = [];
+    byHour[t.hour].push(t.resOp);
+  }
+  const hours = Object.keys(byHour).map(h => parseInt(h, 10)).sort((a, b) => a - b);
+  const hourLabels = hours.map(h => h + "h");
+  const hourMean = hours.map(h => mean(byHour[h]));
+  const hourSum = hours.map(h => sum(byHour[h]));
+
+  Plotly.newPlot("barHourMeanChart", [{
+    x: hourLabels,
+    y: hourMean,
+    type: "bar",
+    name: "Média"
+  }], {
+    margin: { l: 40, r: 20, t: 20, b: 40 },
+    paper_bgcolor: "#020617",
+    plot_bgcolor: "#020617",
+    xaxis: {
+      title: "Hora",
+      tickfont: { color: "#e5e7eb" },
+      titlefont: { color: "#e5e7eb" }
+    },
+    yaxis: {
+      title: "Média de resultado (pontos)",
+      tickfont: { color: "#e5e7eb" },
+      titlefont: { color: "#e5e7eb" }
+    },
+    font: { color: "#e5e7eb" }
+  }, { responsive: true });
+
+  Plotly.newPlot("barHourSumChart", [{
+    x: hourLabels,
+    y: hourSum,
+    type: "bar",
+    name: "Soma"
+  }], {
+    margin: { l: 40, r: 20, t: 20, b: 40 },
+    paper_bgcolor: "#020617",
+    plot_bgcolor: "#020617",
+    xaxis: {
+      title: "Hora",
+      tickfont: { color: "#e5e7eb" },
+      titlefont: { color: "#e5e7eb" }
+    },
+    yaxis: {
+      title: "Soma de resultado (pontos)",
+      tickfont: { color: "#e5e7eb" },
+      titlefont: { color: "#e5e7eb" }
+    },
+    font: { color: "#e5e7eb" }
+  }, { responsive: true });
+
+  const boxHourTraces = hours.map(h => ({
+    y: byHour[h],
+    type: "box",
+    name: h + "h"
+  }));
+  Plotly.newPlot("boxHourChart", boxHourTraces, {
+    margin: { l: 40, r: 20, t: 20, b: 40 },
+    paper_bgcolor: "#020617",
+    plot_bgcolor: "#020617",
+    yaxis: {
+      title: "Resultado (pontos)",
+      tickfont: { color: "#e5e7eb" },
+      titlefont: { color: "#e5e7eb" }
+    },
+    font: { color: "#e5e7eb" }
+  }, { responsive: true });
+
+  /* Scatter duração x resultado */
+  const hasDur = trades.some(t => t.durationSec !== null);
+  if (hasDur) {
+    const valid = trades.filter(t => t.durationSec !== null);
+    const durX = valid.map(t => t.durationSec / 60);
+    const resY = valid.map(t => t.resOp);
+    Plotly.newPlot("scatterDurChart", [{
+      x: durX,
+      y: resY,
+      mode: "markers",
+      type: "scatter",
+      name: "Op.",
+      marker: { size: 6 }
+    }], {
+      margin: { l: 40, r: 20, t: 20, b: 40 },
+      paper_bgcolor: "#020617",
+      plot_bgcolor: "#020617",
+      xaxis: {
+        title: "Duração (minutos)",
+        tickfont: { color: "#e5e7eb" },
+        titlefont: { color: "#e5e7eb" }
+      },
+      yaxis: {
+        title: "Resultado (pontos)",
+        tickfont: { color: "#e5e7eb" },
+        titlefont: { color: "#e5e7eb" }
+      },
+      font: { color: "#e5e7eb" }
+    }, { responsive: true });
+  } else {
+    Plotly.purge("scatterDurChart");
+    document.getElementById("scatterDurChart").innerHTML =
+      "<div style='font-size:0.8rem;color:#9ca3af;margin-top:8px;'>Sem dados de duração suficientes para este gráfico.</div>";
+  }
+
+  /* Agrupamento por dia da semana */
+  const byWeekday = {};
+  for (let t of trades) {
+    if (!byWeekday[t.weekday]) byWeekday[t.weekday] = [];
+    byWeekday[t.weekday].push(t.resOp);
+  }
+  const weekdayKeys = Object.keys(byWeekday).map(k => parseInt(k, 10)).sort((a, b) => a - b);
+  const weekdayLabels = weekdayKeys.map(k => weekdayNameShort(k));
+  const weekdayMean = weekdayKeys.map(k => mean(byWeekday[k]));
+  const weekdaySum = weekdayKeys.map(k => sum(byWeekday[k]));
+
+  Plotly.newPlot("barWeekdayMeanChart", [{
+    x: weekdayLabels,
+    y: weekdayMean,
+    type: "bar",
+    name: "Média"
+  }], {
+    margin: { l: 40, r: 20, t: 20, b: 40 },
+    paper_bgcolor: "#020617",
+    plot_bgcolor: "#020617",
+    xaxis: {
+      title: "Dia da semana",
+      tickfont: { color: "#e5e7eb" },
+      titlefont: { color: "#e5e7eb" }
+    },
+    yaxis: {
+      title: "Média de resultado (pontos)",
+      tickfont: { color: "#e5e7eb" },
+      titlefont: { color: "#e5e7eb" }
+    },
+    font: { color: "#e5e7eb" }
+  }, { responsive: true });
+
+  Plotly.newPlot("barWeekdaySumChart", [{
+    x: weekdayLabels,
+    y: weekdaySum,
+    type: "bar",
+    name: "Soma"
+  }], {
+    margin: { l: 40, r: 20, t: 20, b: 40 },
+    paper_bgcolor: "#020617",
+    plot_bgcolor: "#020617",
+    xaxis: {
+      title: "Dia da semana",
+      tickfont: { color: "#e5e7eb" },
+      titlefont: { color: "#e5e7eb" }
+    },
+    yaxis: {
+      title: "Soma de resultado (pontos)",
+      tickfont: { color: "#e5e7eb" },
+      titlefont: { color: "#e5e7eb" }
+    },
+    font: { color: "#e5e7eb" }
+  }, { responsive: true });
+
+  /* Heatmap hora x dia */
+  const allHoursSet = new Set(hours);
+  const allHoursSorted = Array.from(allHoursSet).sort((a, b) => a - b);
+
+  const usedWeekdays = weekdayKeys;
+  const zMatrix = [];
+  for (let wd of usedWeekdays) {
+    const row = [];
+    for (let h of allHoursSorted) {
+      const vals = trades.filter(t => t.weekday === wd && t.hour === h).map(t => t.resOp);
+      const m = mean(vals);
+      row.push(m !== null ? m : 0);
+    }
+    zMatrix.push(row);
+  }
+
+  Plotly.newPlot("heatmapChart", [{
+    z: zMatrix,
+    x: allHoursSorted.map(h => h + "h"),
+    y: usedWeekdays.map(wd => weekdayNameShort(wd)),
+    type: "heatmap",
+    colorscale: "RdBu",
+    reversescale: true,
+    colorbar: {
+      title: "Média (pts)",
+      titleside: "right"
+    }
+  }], {
+    margin: { l: 60, r: 20, t: 20, b: 40 },
+    paper_bgcolor: "#020617",
+    plot_bgcolor: "#020617",
+    font: { color: "#e5e7eb" }
+  }, { responsive: true });
+}
+
+/* ======== Pipeline principal ======== */
+
+function updateDashboard() {
+  applyFilters();
+  renderKPIs(currentFilteredTrades);
+  renderCharts(currentFilteredTrades);
+}
+
+function atualizarRangeDatas() {
+  if (!allTrades.length) return;
+  let minDt = allTrades[0].dt;
+  let maxDt = allTrades[allTrades.length - 1].dt;
+  const span = document.getElementById("rangeDatas");
+  span.textContent = `Período no arquivo: ${formatDateBR(minDt)} até ${formatDateBR(maxDt)}`;
+}
+
+/* ======== Carregamento Google Sheets ======== */
+
+function carregarDadosSheets() {
+  const status = document.getElementById("loadStatus");
+  status.textContent = "Carregando dados do Google Sheets...";
+
+  fetch(SHEETS_CSV_URL)
+    .then(r => {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.text();
+    })
+    .then(csv => {
+      try {
+        allTrades = parseCSV(csv);
+        if (!allTrades.length) {
+          status.textContent = "Planilha lida, mas nenhuma operação válida foi encontrada.";
+        } else {
+          status.textContent = `Planilha carregada com sucesso. Operações lidas: ${allTrades.length}.`;
+        }
+        atualizarRangeDatas();
+        updateDashboard();
+      } catch (err) {
+        console.error(err);
+        status.textContent = "Erro ao processar os dados: " + err.message;
+        allTrades = [];
+        updateDashboard();
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      status.textContent = "Erro ao carregar dados do Google Sheets: " + err.message;
+      allTrades = [];
+      updateDashboard();
+    });
+}
+
+/* ======== Eventos ======== */
+
+document.getElementById("btnAplicar").addEventListener("click", function () {
+  updateDashboard();
+});
+
+document.getElementById("btnLimpar").addEventListener("click", function () {
+  document.getElementById("ladoCompra").checked = true;
+  document.getElementById("ladoVenda").checked = true;
+  document.getElementById("filtroDataIni").value = "";
+  document.getElementById("filtroDataFim").value = "";
+
+  document.getElementById("diaSeg").checked = true;
+  document.getElementById("diaTer").checked = true;
+  document.getElementById("diaQua").checked = true;
+  document.getElementById("diaQui").checked = true;
+  document.getElementById("diaSex").checked = true;
+
+  document.querySelectorAll(".horaCheck").forEach(c => c.checked = true);
+
+  updateDashboard();
+});
+
+window.addEventListener("load", function () {
+  carregarDadosSheets();
+});
+</script>
+</body>
+</html>
