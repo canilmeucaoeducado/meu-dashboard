@@ -3,10 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Método Meu Cão Educado — Diego Lima Veterinário & Adestrador</title>
+  <title>Programa Online Meu Cão Educado — Diego Lima Veterinário & Adestrador</title>
+  <meta name="description" content="Programa online completo para ensinar seu cão a obedecer, mesmo com distrações. Para cães cheios de energia ou reativos. Acesso imediato por 2 anos." />
+
+  <!-- Preconnect crítico -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://canilmeucaoeducado.github.io" crossorigin />
+  <link rel="dns-prefetch" href="https://connect.facebook.net" />
+  <link rel="dns-prefetch" href="https://www.clarity.ms" />
+
+  <!-- Preload do LCP (mockup hero) -->
+  <link rel="preload" as="image" href="https://canilmeucaoeducado.github.io/meucaoeducado/mockup_meucaoeducado.png" />
+
+  <!-- Google Fonts não bloqueante (print trick) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap" /></noscript>
   <style>
     :root {
       --verde-escuro:  #3B4D1E;
@@ -17,6 +29,7 @@
       --creme-verde:   #E1E1D2;
       --branco:        #FFFFFF;
       --marrom-terra:  #4B3C1E;
+      --font-sans: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
 
     * {
@@ -27,7 +40,7 @@
 
     body {
       background-color: var(--branco);
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--font-sans);
       color: var(--marrom-terra);
       font-size: 16px;
       line-height: 1.6;
@@ -549,36 +562,7 @@
     }
 
   </style>
-  <link rel="dns-prefetch" href="https://connect.facebook.net">
-  <link rel="dns-prefetch" href="https://www.clarity.ms">
-
-  <!-- Meta Pixel Code -->
-  <script defer>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1336628157581322');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1336628157581322&ev=PageView&noscript=1"
-  /></noscript>
-  <!-- End Meta Pixel Code -->
-
-  <!-- Microsoft Clarity -->
-  <script>
-  (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-  })(window, document, "clarity", "script", "w3fnz1hr1l");
-  </script>
-  <!-- End Microsoft Clarity -->
+</head>
 
 
 <body>
@@ -595,6 +579,10 @@
       <img
         src="https://canilmeucaoeducado.github.io/meucaoeducado/mockup_meucaoeducado.png"
         alt="Mockup do curso Método Meu Cão Educado — Diego Lima Veterinário & Adestrador"
+        fetchpriority="high"
+        decoding="async"
+        width="560"
+        height="350"
         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
       />
       <div class="hero-image-placeholder" style="display:none;">
@@ -622,31 +610,31 @@
       <div class="proof-carousel" id="proofCarousel">
 
         <div class="proof-card" style="padding:0; overflow:hidden;">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card1.webp" alt="Depoimento Jeane e Jade" width="300" height="375" loading="lazy" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card1.webp" alt="Depoimento Jeane e Jade" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
         </div>
         <div class="proof-card" style="padding:0; overflow:hidden;">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/depoimento_rosangela_fly.webp" alt="Depoimento Rosangela e Fly" width="300" height="375" loading="lazy" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/depoimento_rosangela_fly.webp" alt="Depoimento Rosangela e Fly" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
         </div>
         <div class="proof-card" style="padding:0; overflow:hidden;">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card2.webp" alt="Depoimento Pedro e Rock" width="300" height="375" loading="lazy" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card2.webp" alt="Depoimento Pedro e Rock" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
         </div>
         <div class="proof-card" style="padding:0; overflow:hidden;">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card7.webp" alt="Depoimento card7" width="300" height="375" loading="lazy" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card7.webp" alt="Depoimento card7" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
         </div>
         <div class="proof-card" style="padding:0; overflow:hidden;">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card4.webp" alt="Depoimento Beto e Max" width="300" height="375" loading="lazy" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card4.webp" alt="Depoimento Beto e Max" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
         </div>
         <div class="proof-card" style="padding:0; overflow:hidden;">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card5.webp" alt="Depoimento Kiara e Maia" width="300" height="375" loading="lazy" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card5.webp" alt="Depoimento Kiara e Maia" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
         </div>
         <div class="proof-card" style="padding:0; overflow:hidden;">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card6.webp" alt="Depoimento Nero" width="300" height="375" loading="lazy" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card6.webp" alt="Depoimento Nero" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
         </div>
         <div class="proof-card" style="padding:0; overflow:hidden;">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card3.webp" alt="Depoimento Ros e Duque" width="300" height="375" loading="lazy" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card3.webp" alt="Depoimento Ros e Duque" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
         </div>
         <div class="proof-card" style="padding:0; overflow:hidden;">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card8.webp" alt="Depoimento card8" width="300" height="375" loading="lazy" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card8.webp" alt="Depoimento card8" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
         </div>
 
       </div>
@@ -951,6 +939,34 @@
       }
     }
   </script>
+
+  <!-- Meta Pixel Code -->
+  <script defer>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1336628157581322');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1336628157581322&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
+  <!-- Microsoft Clarity -->
+  <script defer>
+  (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "w3fnz1hr1l");
+  </script>
+  <!-- End Microsoft Clarity -->
 
 </body>
 </html>
