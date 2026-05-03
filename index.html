@@ -6,6 +6,11 @@
   <title>Programa Online Meu Cão Educado — Diego Lima Veterinário & Adestrador</title>
   <meta name="description" content="Programa online completo para ensinar seu cão a obedecer, mesmo com distrações. Para cães cheios de energia ou reativos. Acesso imediato por 2 anos." />
 
+  <!-- Segurança via meta tags (GitHub Pages não permite headers HTTP) -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
   <!-- Preconnect crítico -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -378,6 +383,8 @@
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       padding: 0 20px 8px;
+      will-change: scroll-position;
+      contain: layout style;
     }
 
     .proof-carousel::-webkit-scrollbar { display: none; }
@@ -389,6 +396,7 @@
       background: var(--creme-verde);
       scroll-snap-align: start;
       overflow: hidden;
+      contain: layout style paint;
     }
 
     .proof-arrow {
@@ -567,6 +575,8 @@
 
 <body>
 
+  <main id="conteudo-principal">
+
   <!-- ===== HERO ===== -->
   <section class="hero">
     <h1>
@@ -583,6 +593,7 @@
         decoding="async"
         width="560"
         height="350"
+        style="aspect-ratio: 560/350; width:100%; height:auto;"
         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
       />
       <div class="hero-image-placeholder" style="display:none;">
@@ -610,31 +621,31 @@
       <div class="proof-carousel" id="proofCarousel">
 
         <div class="proof-card" style="padding:0; overflow:hidden;">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card1.webp" alt="Depoimento Jeane e Jade" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card1.webp" alt="Depoimento Jeane e Jade" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; aspect-ratio:4/5; object-fit:contain; display:block; background:#fff;">
         </div>
         <div class="proof-card" style="padding:0; overflow:hidden;">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/depoimento_rosangela_fly.webp" alt="Depoimento Rosangela e Fly" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/depoimento_rosangela_fly.webp" alt="Depoimento Rosangela e Fly" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; aspect-ratio:4/5; object-fit:contain; display:block; background:#fff;">
         </div>
         <div class="proof-card" style="padding:0; overflow:hidden;">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card2.webp" alt="Depoimento Pedro e Rock" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card2.webp" alt="Depoimento Pedro e Rock" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; aspect-ratio:4/5; object-fit:contain; display:block; background:#fff;">
         </div>
         <div class="proof-card" style="padding:0; overflow:hidden;">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card7.webp" alt="Depoimento card7" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card7.webp" alt="Depoimento card7" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; aspect-ratio:4/5; object-fit:contain; display:block; background:#fff;">
         </div>
         <div class="proof-card" style="padding:0; overflow:hidden;">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card4.webp" alt="Depoimento Beto e Max" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card4.webp" alt="Depoimento Beto e Max" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; aspect-ratio:4/5; object-fit:contain; display:block; background:#fff;">
         </div>
         <div class="proof-card" style="padding:0; overflow:hidden;">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card5.webp" alt="Depoimento Kiara e Maia" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card5.webp" alt="Depoimento Kiara e Maia" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; aspect-ratio:4/5; object-fit:contain; display:block; background:#fff;">
         </div>
         <div class="proof-card" style="padding:0; overflow:hidden;">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card6.webp" alt="Depoimento Nero" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card6.webp" alt="Depoimento Nero" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; aspect-ratio:4/5; object-fit:contain; display:block; background:#fff;">
         </div>
         <div class="proof-card" style="padding:0; overflow:hidden;">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card3.webp" alt="Depoimento Ros e Duque" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card3.webp" alt="Depoimento Ros e Duque" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; aspect-ratio:4/5; object-fit:contain; display:block; background:#fff;">
         </div>
         <div class="proof-card" style="padding:0; overflow:hidden;">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card8.webp" alt="Depoimento card8" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; object-fit:contain; display:block; background:#fff;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card8.webp" alt="Depoimento card8" width="300" height="375" loading="lazy" decoding="async" style="width:100%; height:auto; aspect-ratio:4/5; object-fit:contain; display:block; background:#fff;">
         </div>
 
       </div>
@@ -881,6 +892,7 @@
   </div>
 
   <!-- ===== FOOTER ===== -->
+  </main>
   <footer>
     <p>© 2024 Diego Lima Veterinário & Adestrador. Todos os direitos reservados.</p>
   </footer>
@@ -892,51 +904,67 @@
     }
 
     // ===== CARROSSEL PROVA SOCIAL =====
-    const carousel = document.getElementById('proofCarousel');
-    const dotsWrap = document.getElementById('proofDots');
-    const cards = carousel ? carousel.querySelectorAll('.proof-card') : [];
+    // Defer initialization to avoid blocking main thread
+    function initCarousel() {
+      const carousel = document.getElementById('proofCarousel');
+      const dotsWrap = document.getElementById('proofDots');
+      if (!carousel || !dotsWrap) return;
 
-    if (cards.length && dotsWrap) {
+      const cards = carousel.querySelectorAll('.proof-card');
+      if (!cards.length) return;
+
+      // Batch DOM writes — build fragment first, then insert once
+      const frag = document.createDocumentFragment();
       cards.forEach((_, i) => {
         const dot = document.createElement('div');
         dot.className = 'proof-dot' + (i === 0 ? ' active' : '');
         dot.onclick = () => {
-          carousel.scrollTo({ left: cards[i].offsetLeft - 20, behavior: 'smooth' });
+          // Batch read, then write
+          const targetLeft = cards[i].offsetLeft - 20;
+          carousel.scrollTo({ left: targetLeft, behavior: 'smooth' });
         };
-        dotsWrap.appendChild(dot);
+        frag.appendChild(dot);
       });
+      dotsWrap.appendChild(frag);
 
+      // Throttle scroll handler to avoid layout thrashing
+      let scrollTicking = false;
       carousel.addEventListener('scroll', () => {
-        const dots = dotsWrap.querySelectorAll('.proof-dot');
-        let closest = 0;
-        let minDist = Infinity;
-        cards.forEach((card, i) => {
-          const dist = Math.abs(card.getBoundingClientRect().left - carousel.getBoundingClientRect().left);
-          if (dist < minDist) { minDist = dist; closest = i; }
+        if (scrollTicking) return;
+        scrollTicking = true;
+        requestAnimationFrame(() => {
+          // Batch all reads first
+          const carouselLeft = carousel.getBoundingClientRect().left;
+          const positions = Array.from(cards).map(card => ({
+            dist: Math.abs(card.getBoundingClientRect().left - carouselLeft)
+          }));
+          // Then find closest
+          let closest = 0;
+          let minDist = Infinity;
+          positions.forEach((p, i) => {
+            if (p.dist < minDist) { minDist = p.dist; closest = i; }
+          });
+          // Then batch DOM writes
+          dotsWrap.querySelectorAll('.proof-dot').forEach((d, i) => {
+            d.classList.toggle('active', i === closest);
+          });
+          scrollTicking = false;
         });
-        dots.forEach((d, i) => d.classList.toggle('active', i === closest));
-      });
+      }, { passive: true });
     }
 
     function scrollProof(dir) {
+      const carousel = document.getElementById('proofCarousel');
       if (!carousel) return;
-      const cardW = carousel.querySelector('.proof-card')?.offsetWidth + 14 || 294;
+      const cardW = (carousel.querySelector('.proof-card')?.offsetWidth || 280) + 14;
       carousel.scrollBy({ left: dir * cardW, behavior: 'smooth' });
     }
 
-    // ===== VÍDEO DEPOIMENTO =====
-    function toggleVideoRosangela(card) {
-      const video = document.getElementById('videoRosangela');
-      const btn = document.getElementById('playBtnRosangela');
-      if (video.paused) {
-        video.play();
-        btn.style.opacity = '0';
-        btn.style.pointerEvents = 'none';
-      } else {
-        video.pause();
-        btn.style.opacity = '1';
-        btn.style.pointerEvents = 'auto';
-      }
+    // Defer carousel init to after page load
+    if (document.readyState === 'complete') {
+      initCarousel();
+    } else {
+      window.addEventListener('load', initCarousel, { once: true });
     }
   </script>
 
