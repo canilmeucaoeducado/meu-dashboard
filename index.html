@@ -872,6 +872,100 @@
   </div>
 
 
+  <!-- ===== FORMULÁRIO DE DÚVIDAS ===== -->
+  <div style="max-width:700px; margin:0 auto; padding:0 20px 40px;">
+
+    <div style="border:2px solid var(--verde-escuro); border-radius:10px; padding:14px 24px; text-align:center; margin:32px auto 0;">
+      <h2 style="font-family:'DM Sans',sans-serif; color:var(--verde-escuro); font-size:1.5rem; font-weight:700;">
+        SUA DÚVIDA NÃO ESTÁ AQUI?
+      </h2>
+    </div>
+
+    <div style="border:2px solid var(--verde-escuro); border-radius:14px; padding:24px 22px; margin:12px auto 0; background-color:var(--creme-verde);">
+      <p style="font-family:'DM Sans',sans-serif; font-size:1rem; color:var(--marrom-terra); margin-bottom:18px; line-height:1.5;">
+        Me manda sua pergunta abaixo. Diego responde pessoalmente no seu e-mail.
+      </p>
+
+      <div style="margin-bottom:14px;">
+        <input
+          type="email"
+          id="duvida-email"
+          placeholder="Seu e-mail"
+          style="width:100%; padding:14px 16px; border:2px solid var(--verde-medio); border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.97rem; color:var(--marrom-terra); background:#fff; outline:none; box-sizing:border-box;"
+        />
+      </div>
+
+      <div style="margin-bottom:18px;">
+        <textarea
+          id="duvida-texto"
+          placeholder="Escreva sua dúvida aqui..."
+          rows="4"
+          style="width:100%; padding:14px 16px; border:2px solid var(--verde-medio); border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.97rem; color:var(--marrom-terra); background:#fff; outline:none; resize:vertical; box-sizing:border-box;"
+        ></textarea>
+      </div>
+
+      <div style="text-align:center;">
+        <button
+          id="duvida-btn"
+          onclick="enviarDuvida()"
+          style="background-color:var(--verde-medio); color:#fff; border:none; border-radius:10px; padding:14px 32px; font-family:'DM Sans',sans-serif; font-weight:700; font-size:1rem; cursor:pointer; width:100%; max-width:420px; transition:background-color 0.2s;"
+          onmouseover="this.style.backgroundColor='var(--verde-escuro)'"
+          onmouseout="this.style.backgroundColor='var(--verde-medio)'"
+        >
+          ENVIAR DÚVIDA
+        </button>
+      </div>
+
+      <div id="duvida-msg" style="display:none; margin-top:16px; text-align:center; font-family:'DM Sans',sans-serif; font-size:0.97rem; font-weight:600; color:var(--verde-escuro);">
+        ✅ Dúvida enviada! Diego vai responder no seu e-mail em breve.
+      </div>
+      <div id="duvida-erro" style="display:none; margin-top:16px; text-align:center; font-family:'DM Sans',sans-serif; font-size:0.97rem; font-weight:600; color:#c0392b;">
+        ⚠️ Preencha o e-mail e a dúvida antes de enviar.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function enviarDuvida() {
+      var email  = document.getElementById('duvida-email').value.trim();
+      var duvida = document.getElementById('duvida-texto').value.trim();
+      var btn    = document.getElementById('duvida-btn');
+      var msg    = document.getElementById('duvida-msg');
+      var erro   = document.getElementById('duvida-erro');
+
+      msg.style.display  = 'none';
+      erro.style.display = 'none';
+
+      if (!email || !duvida) {
+        erro.style.display = 'block';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Enviando...';
+
+      var url = 'https://script.google.com/macros/s/AKfycbzrfwXVqJdvy3R6owHFzfMEK8pMIpRGZsqD5UYzctXZ1K1LJP93Y2mB3Zyp2dYe706Ijw/exec';
+
+      fetch(url, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'email=' + encodeURIComponent(email) + '&duvida=' + encodeURIComponent(duvida)
+      }).then(function() {
+        msg.style.display = 'block';
+        document.getElementById('duvida-email').value = '';
+        document.getElementById('duvida-texto').value = '';
+        btn.textContent = 'ENVIAR DÚVIDA';
+        btn.disabled = false;
+      }).catch(function() {
+        erro.textContent = '⚠️ Erro ao enviar. Tente novamente.';
+        erro.style.display = 'block';
+        btn.textContent = 'ENVIAR DÚVIDA';
+        btn.disabled = false;
+      });
+    }
+  </script>
+
   <!-- ===== CHECKOUT EDUZZ ===== -->
   <div id="checkout" style="max-width: 700px; margin: 0 auto; padding: 0 20px 40px;">
     <div id="elements"></div>
