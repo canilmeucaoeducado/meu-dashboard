@@ -85,7 +85,7 @@
     }
 
     .hero-image-wrap {
-      margin: 4px auto 0px;
+      margin: 16px auto 0px;
       max-width: 560px;
     }
 
@@ -115,7 +115,7 @@
       font-size: 1.05rem;
       color: var(--marrom-terra);
       max-width: 460px;
-      margin: 4px auto 8px;
+      margin: 16px auto 8px;
       line-height: 1.6;
     }
 
@@ -397,6 +397,7 @@
       scroll-snap-align: start;
       overflow: hidden;
       contain: layout style paint;
+      border: 2px solid var(--verde-escuro);
     }
 
     .proof-arrow {
@@ -747,12 +748,7 @@
 
   </div>
 
-  <!-- Texto de fechamento -->
-  <div class="closing-box">
-    <p>Este programa foi feito para você começar ainda hoje, <u>em casa ou no próximo passeio,</u> e ver as mudanças no seu cão já nos próximos dias.</p>
-  </div>
-
-  <p style="text-align:center; font-family:'DM Sans',sans-serif; font-size:1.5rem; font-weight:700; color:#3B4D1E; margin: 20px 0 4px;">Por apenas R$ 197,00</p>
+  <p style="text-align:center; font-family:'DM Sans',sans-serif; font-size:1.9rem; font-weight:700; color:#3B4D1E; margin: 20px 0 4px;">Por apenas R$ 197,00</p>
 
   <!-- Segundo CTA -->
   <div class="btn-cta-wrap" style="padding-top: 24px;">
@@ -889,6 +885,28 @@
     <a href="https://sun.eduzz.com/1W3ZEGD5W2" class="btn-cta">
       QUERO MEU CÃO OBEDIENTE!
     </a>
+  </div>
+
+  <!-- ===== CHECKOUT EDUZZ ===== -->
+  <div style="max-width: 700px; margin: 0 auto; padding: 0 20px 40px;">
+    <div id="elements"></div>
+    <script src="https://cdn.eduzzcdn.com/sun/bridge/bridge.js" async type="module"></script>
+    <script>
+      (function () {
+        const load = function () {
+            window.Eduzz.Checkout.init({
+              contentId: "1W3ZEGD5W2",
+              target: "elements",
+              errorCover: true
+            });
+        }
+        if (document.readyState === 'complete') {
+            load();
+            return;
+        }
+        window.addEventListener('load', load);
+      })();
+    </script>
   </div>
 
   <!-- ===== FOOTER ===== -->
