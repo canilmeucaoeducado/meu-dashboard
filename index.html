@@ -753,7 +753,7 @@
   <!-- Segundo CTA -->
   <div class="btn-cta-wrap" style="padding-top: 24px;">
     <!-- SUBSTITUA O LINK ABAIXO PELO SEU CHECKOUT -->
-    <a href="https://sun.eduzz.com/1W3ZEGD5W2" class="btn-cta">
+    <a href="#checkout" onclick="event.preventDefault(); document.getElementById('checkout').scrollIntoView({behavior:'smooth'})" class="btn-cta">
       QUERO MEU CÃO OBEDIENTE!
     </a>
   </div>
@@ -882,13 +882,13 @@
   <!-- Terceiro CTA (final) -->
   <div class="btn-cta-wrap" style="padding-bottom: 40px;">
     <!-- SUBSTITUA O LINK ABAIXO PELO SEU CHECKOUT -->
-    <a href="https://sun.eduzz.com/1W3ZEGD5W2" class="btn-cta">
+    <a href="#checkout" onclick="event.preventDefault(); document.getElementById('checkout').scrollIntoView({behavior:'smooth'})" class="btn-cta">
       QUERO MEU CÃO OBEDIENTE!
     </a>
   </div>
 
   <!-- ===== CHECKOUT EDUZZ ===== -->
-  <div style="max-width: 700px; margin: 0 auto; padding: 0 20px 40px;">
+  <div id="checkout" style="max-width: 700px; margin: 0 auto; padding: 0 20px 40px;">
     <div id="elements"></div>
     <script src="https://cdn.eduzzcdn.com/sun/bridge/bridge.js" async type="module"></script>
     <script>
