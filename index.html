@@ -4,29 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Programa Meu Cão Educado - Diego Lima</title>
-  <meta name="description" content="Programa completo para gastar energia e educar seu cão em menos de 10 minutos por dia. Sem brigar, punir nem repetir comandos. Funciona para qualquer raça e idade." />
+  <meta name="description" content="+60 Atividades Para Gastar Energia e Educar Seu Cão Hiperativo" />
   <meta property="og:title" content="Programa Meu Cão Educado - Diego Lima" />
-  <meta property="og:description" content="+60 Atividades Para Gastar Energia e Educar Seu Cão 220V" />
-  <meta property="og:image" content="https://canilmeucaoeducado.github.io/meucaoeducado/mockup_meucaoeducado.png" />
+  <meta property="og:description" content="+60 Atividades Para Gastar Energia e Educar Seu Cão Hiperativo" />
+  <meta property="og:image" content="https://canilmeucaoeducado.github.io/meucaoeducado/mockup_meucaoeducado.webp" />
   <meta property="og:image:width" content="560" />
   <meta property="og:image:height" content="350" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Programa Meu Cão Educado - Diego Lima" />
-  <meta name="twitter:description" content="+60 Atividades Para Gastar Energia e Educar Seu Cão 220V" />
-  <meta name="twitter:image" content="https://canilmeucaoeducado.github.io/meucaoeducado/mockup_meucaoeducado.png" />
+  <meta name="twitter:description" content="+60 Atividades Para Gastar Energia e Educar Seu Cão Hiperativo" />
+  <meta name="twitter:image" content="https://canilmeucaoeducado.github.io/meucaoeducado/mockup_meucaoeducado.webp" />
 
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="dns-prefetch" href="https://canilmeucaoeducado.github.io" />
+  <link rel="preconnect" href="https://cdn.eduzzcdn.com" crossorigin />
+  <link rel="preconnect" href="https://elements2.eduzz.com" crossorigin />
 
-  <link rel="preload" as="image" href="https://canilmeucaoeducado.github.io/meucaoeducado/mockup_meucaoeducado.png" fetchpriority="high" />
+  <link rel="preload" as="image" fetchpriority="high" href="https://canilmeucaoeducado.github.io/meucaoeducado/mockup_meucaoeducado.webp" type="image/webp" />
 
   <!-- DM Sans + Dancing Script (cursiva para o nome) -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Dancing+Script:wght@700&display=swap&font-display=swap" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Dancing+Script:wght@700&display=swap" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Dancing+Script:wght@700&display=swap" /></noscript>
 
   <style>
@@ -37,6 +38,7 @@
       descent-override: 25%;
       line-gap-override: 0%;
       size-adjust: 103%;
+      font-display: swap;
     }
 
     :root {
@@ -116,6 +118,8 @@
     .hero-image-wrap {
       margin: 0 auto 20px;
       max-width: 560px;
+      aspect-ratio: 560/350;
+      contain: layout;
     }
 
     .hero-image-wrap img {
@@ -197,14 +201,14 @@
     /* ===== BOTÃO CTA ===== */
     .btn-cta {
       display: inline-block;
-      background-color: var(--verde-medio);
-      color: var(--branco);
+      background-color: #076B2E;
+      color: #FFFFFF;
       text-decoration: none;
       border-radius: 10px;
       padding: 16px 32px;
       font-family: var(--font-sans);
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 1.15rem;
       letter-spacing: 0.03em;
       text-align: center;
       transition: background-color 0.2s ease, transform 0.15s ease;
@@ -213,11 +217,10 @@
       line-height: 1.3;
       width: 100%;
       max-width: 420px;
-      will-change: transform;
     }
 
     .btn-cta:hover {
-      background-color: var(--verde-escuro);
+      background-color: #054F22;
       transform: translateY(-2px);
     }
 
@@ -240,7 +243,7 @@
       text-align: center;
       font-family: var(--font-sans);
       font-size: 0.82rem;
-      color: var(--verde-cinza);
+      color: #1A5C32;
       margin-top: 10px;
     }
 
@@ -308,7 +311,7 @@
       stroke-linejoin: round;
     }
 
-    .included-text strong { color: var(--verde-escuro); font-weight: 600; }
+    .included-text strong { color: #065A28; font-weight: 700; }
 
     .included-text {
       font-size: 0.97rem;
@@ -385,11 +388,11 @@
       font-family: var(--font-sans);
       font-size: 0.97rem;
       font-weight: 700;
-      color: var(--verde-escuro);
+      color: #065A28;
       transition: color 0.15s;
     }
 
-    .faq-question:hover { color: var(--verde-medio); }
+    .faq-question:hover { color: #0E8A3E; }
 
     .faq-plus {
       font-size: 1.1rem;
@@ -413,11 +416,11 @@
 
     /* ===== FOOTER ===== */
     footer {
-      background-color: var(--verde-escuro);
+      background-color: #065A28;
       text-align: center;
       padding: 24px 20px;
       font-size: 0.85rem;
-      color: var(--creme-verde);
+      color: #FFFFFF;
       margin-top: 8px;
     }
 
@@ -453,7 +456,6 @@
       overflow: hidden;
       contain: layout style paint;
       border: 2px solid var(--verde-escuro);
-      padding: 0;
     }
 
     .proof-arrow {
@@ -496,14 +498,7 @@
       transition: background 0.2s;
     }
 
-    .proof-card img {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 4/5;
-      object-fit: contain;
-      display: block;
-      background: #fff;
-    }
+    .proof-dot.active { background: var(--verde-escuro); }
 
     /* ===== PLANOS ===== */
     .plans-wrap {
@@ -657,7 +652,7 @@
       .hero-objections li { font-size: 0.95rem; }
       .hero-price-value { font-size: 1.7rem; }
 
-      .btn-cta { font-size: 1rem; padding: 16px 20px; width: 100%; max-width: 100%; }
+      .btn-cta { font-size: 1.1rem; padding: 16px 20px; width: 100%; max-width: 100%; }
       .btn-cta-wrap { padding: 8px 0 24px; }
 
       .section-heading-box,
@@ -689,7 +684,7 @@
     @media (max-width: 360px) {
       .hero-promise { font-size: 1.35rem; }
       .proof-card { flex: 0 0 94vw; }
-      .btn-cta { font-size: 0.92rem; padding: 14px 16px; }
+      .btn-cta { font-size: 1rem; padding: 14px 16px; }
     }
 
     @media (max-width: 340px) {
@@ -712,28 +707,35 @@
       fetchpriority="high"
       decoding="async"
       width="220"
-      height="60"
+      height="86"
       style="max-width:220px; width:60%; height:auto; display:inline-block; margin-bottom:16px;"
     />
 
     <!-- Promessa -->
     <h1 class="hero-promise">
-      <span style="color:var(--verde-medio);">+60 Atividades Para Gastar Energia e Educar Seu Cão 220V</span><span style="color:var(--marrom-terra);">, gastando menos de 10 minutos por dia!</span>
+      <span style="color:var(--verde-medio);">+60 Atividades Para Gastar Energia e Educar Seu Cão Hiperativo</span><span style="color:var(--marrom-terra);">, gastando menos de 10 minutos por dia!</span>
     </h1>
 
     <!-- Mockup -->
     <div class="hero-image-wrap">
       <picture>
-        <source srcset="https://canilmeucaoeducado.github.io/meucaoeducado/mockup_meucaoeducado.webp" type="image/webp" />
+        <source
+          type="image/webp"
+          srcset="
+            https://canilmeucaoeducado.github.io/meucaoeducado/mockup_meucaoeducado.webp 560w,
+            https://canilmeucaoeducado.github.io/meucaoeducado/mockup_meucaoeducado.webp 1120w
+          "
+          sizes="(max-width: 600px) calc(100vw - 40px), 560px"
+        />
         <img
-          src="https://canilmeucaoeducado.github.io/meucaoeducado/mockup_meucaoeducado.png"
+          src="https://canilmeucaoeducado.github.io/meucaoeducado/mockup_meucaoeducado.webp"
           alt="Mockup do Programa Online Meu Cão Educado — Diego Lima Veterinário & Adestrador"
           fetchpriority="high"
           decoding="async"
           width="560"
           height="350"
-          style="aspect-ratio:560/350; width:100%; height:auto;"
-          onerror="this.parentElement.parentElement.querySelector('.hero-image-placeholder').style.display='flex'; this.parentElement.style.display='none';"
+          style="width:100%; height:auto; border-radius:16px; display:block;"
+          onerror="this.closest('picture').style.display='none'; this.closest('.hero-image-wrap').querySelector('.hero-image-placeholder').style.display='flex';"
         />
       </picture>
       <div class="hero-image-placeholder" style="display:none;">
@@ -837,7 +839,7 @@
         <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>
       </div>
       <div class="included-text">
-        <strong>Alta Energia 220V</strong> — Ótimo para cansar fisicamente sem precisar aumentar os passeios.
+        <strong>Alta Energia</strong> — Ótimo para cansar fisicamente sem precisar aumentar os passeios.
       </div>
     </div>
 
@@ -874,35 +876,38 @@
     <div class="proof-carousel-wrap">
       <div class="proof-carousel" id="proofCarousel">
 
-        <div class="proof-card">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card1.webp" alt="Depoimento Jeane e Jade" width="280" height="350" loading="lazy" decoding="async">
+        <div class="proof-card" style="padding:0; overflow:hidden;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/depoime_mari_tully.webp" alt="Depoimento Mari e Tully" width="280" height="350" loading="lazy" decoding="async" style="width:100%; height:auto; aspect-ratio:4/5; object-fit:contain; display:block; background:#fff;">
         </div>
-        <div class="proof-card">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/depoimento_rosangela_fly.webp" alt="Depoimento Rosangela e Fly" width="280" height="350" loading="lazy" decoding="async">
+        <div class="proof-card" style="padding:0; overflow:hidden;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card1.webp" alt="Depoimento Jeane e Jade" width="280" height="350" loading="lazy" decoding="async" style="width:100%; height:auto; aspect-ratio:4/5; object-fit:contain; display:block; background:#fff;">
         </div>
-        <div class="proof-card">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card2.webp" alt="Depoimento Pedro e Rock" width="280" height="350" loading="lazy" decoding="async">
+        <div class="proof-card" style="padding:0; overflow:hidden;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/depoimento_rosangela_fly.webp" alt="Depoimento Rosangela e Fly" width="280" height="350" loading="lazy" decoding="async" style="width:100%; height:auto; aspect-ratio:4/5; object-fit:contain; display:block; background:#fff;">
         </div>
-        <div class="proof-card">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card7.webp" alt="Depoimento card7" width="280" height="350" loading="lazy" decoding="async">
+        <div class="proof-card" style="padding:0; overflow:hidden;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card2.webp" alt="Depoimento Pedro e Rock" width="280" height="350" loading="lazy" decoding="async" style="width:100%; height:auto; aspect-ratio:4/5; object-fit:contain; display:block; background:#fff;">
         </div>
-        <div class="proof-card">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card4.webp" alt="Depoimento Beto e Max" width="280" height="350" loading="lazy" decoding="async">
+        <div class="proof-card" style="padding:0; overflow:hidden;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card7.webp" alt="Depoimento card7" width="280" height="350" loading="lazy" decoding="async" style="width:100%; height:auto; aspect-ratio:4/5; object-fit:contain; display:block; background:#fff;">
         </div>
-        <div class="proof-card">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card5.webp" alt="Depoimento Kiara e Maia" width="280" height="350" loading="lazy" decoding="async">
+        <div class="proof-card" style="padding:0; overflow:hidden;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card4.webp" alt="Depoimento Beto e Max" width="280" height="350" loading="lazy" decoding="async" style="width:100%; height:auto; aspect-ratio:4/5; object-fit:contain; display:block; background:#fff;">
         </div>
-        <div class="proof-card">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card6.webp" alt="Depoimento Nero" width="280" height="350" loading="lazy" decoding="async">
+        <div class="proof-card" style="padding:0; overflow:hidden;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card5.webp" alt="Depoimento Kiara e Maia" width="280" height="350" loading="lazy" decoding="async" style="width:100%; height:auto; aspect-ratio:4/5; object-fit:contain; display:block; background:#fff;">
         </div>
-        <div class="proof-card">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card3.webp" alt="Depoimento Ros e Duque" width="280" height="350" loading="lazy" decoding="async">
+        <div class="proof-card" style="padding:0; overflow:hidden;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card6.webp" alt="Depoimento Nero" width="280" height="350" loading="lazy" decoding="async" style="width:100%; height:auto; aspect-ratio:4/5; object-fit:contain; display:block; background:#fff;">
         </div>
-        <div class="proof-card">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card8.webp" alt="Depoimento card8" width="280" height="350" loading="lazy" decoding="async">
+        <div class="proof-card" style="padding:0; overflow:hidden;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card3.webp" alt="Depoimento Ros e Duque" width="280" height="350" loading="lazy" decoding="async" style="width:100%; height:auto; aspect-ratio:4/5; object-fit:contain; display:block; background:#fff;">
         </div>
-        <div class="proof-card">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/depoimento_Fred_Yorkshire.webp" alt="Depoimento Fred Yorkshire" width="280" height="350" loading="lazy" decoding="async">
+        <div class="proof-card" style="padding:0; overflow:hidden;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card8.webp" alt="Depoimento card8" width="280" height="350" loading="lazy" decoding="async" style="width:100%; height:auto; aspect-ratio:4/5; object-fit:contain; display:block; background:#fff;">
+        </div>
+        <div class="proof-card" style="padding:0; overflow:hidden;">
+          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/depoimento_Fred_Yorkshire.webp" alt="Depoimento Fred Yorkshire" width="280" height="350" loading="lazy" decoding="async" style="width:100%; height:auto; aspect-ratio:4/5; object-fit:contain; display:block; background:#fff;">
         </div>
 
       </div>
@@ -1054,7 +1059,7 @@
   <!-- ===== FOOTER ===== -->
   </main>
   <footer>
-    <p>© 2025 Diego Lima Veterinário & Adestrador. Todos os direitos reservados.</p>
+    <p>© 2024 Diego Lima Veterinário & Adestrador. Todos os direitos reservados.</p>
   </footer>
 
   <script>
