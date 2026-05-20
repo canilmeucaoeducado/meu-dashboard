@@ -19,7 +19,7 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
-  <!-- OTIMIZAÇÃO: apenas 2 preconnects essenciais (fontes). Eduzz não precisa aqui — carrega sob demanda -->
+  <!-- OTIMIZAÇÃO: apenas 2 preconnects essenciais (fontes) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
@@ -693,7 +693,7 @@
       <li>Sem brigar, punir nem repetir comandos 10 vezes.</li>
     </ul>
 
-    <a href="#checkout" class="btn-cta js-scroll-checkout">
+    <a href="https://chk.eduzz.com/dwt7yr3b" class="btn-cta" target="_blank" rel="noopener">
       Quero Essa Transformação por R$ 97
     </a>
     <p class="plans-guarantee" style="margin-top:10px;margin-bottom:32px;">📲 Acesso por 2 anos &nbsp; 🔒 Garantia de 7 dias</p>
@@ -834,7 +834,7 @@
 
   <!-- ===== CTA PREÇO 2 ===== -->
   <div style="text-align:center;padding:24px 20px 8px;">
-    <a href="#checkout" class="btn-cta js-scroll-checkout" style="max-width:420px;display:inline-block;">
+    <a href="https://chk.eduzz.com/dwt7yr3b" class="btn-cta" style="max-width:420px;display:inline-block;" target="_blank" rel="noopener">
       Quero Essa Transformação por R$ 97
     </a>
     <p class="plans-guarantee" style="margin-top:16px;">📲 Acesso por 2 anos &nbsp; 🔒 Garantia de 7 dias</p>
@@ -951,11 +951,6 @@
     </div>
   </div>
 
-  <!-- ===== CHECKOUT EDUZZ — carregado apenas quando visível (IntersectionObserver) ===== -->
-  <div id="checkout" style="max-width:700px;margin:32px auto 0;padding:0 20px;">
-    <div id="elements"></div>
-  </div>
-
   <!-- ===== FOOTER ===== -->
 </main>
 <footer>
@@ -969,23 +964,6 @@
 -->
 <script>
 /* ---- FAQ — delegação de evento (1 listener em vez de 10) ---- */
-document.querySelector('.faq-card').addEventListener('click', function(e) {
-  var btn = e.target.closest('.faq-question');
-  if (!btn) return;
-  var item = btn.parentElement;
-  var isOpen = item.classList.contains('open');
-  item.classList.toggle('open', !isOpen);
-  btn.setAttribute('aria-expanded', String(!isOpen));
-});
-
-/* ---- Scroll suave para #checkout (evita onClick inline) ---- */
-document.addEventListener('click', function(e) {
-  var el = e.target.closest('.js-scroll-checkout');
-  if (!el) return;
-  e.preventDefault();
-  var target = document.getElementById('checkout');
-  if (target) target.scrollIntoView({ behavior: 'smooth' });
-});
 
 /* ---- Carrossel ---- */
 (function() {
@@ -1038,43 +1016,7 @@ document.addEventListener('click', function(e) {
   });
 })();
 
-/* ---- Eduzz: carrega o script só quando #checkout fica visível ---- */
-(function() {
-  var target = document.getElementById('checkout');
-  if (!target) return;
-
-  var loaded = false;
-  function loadEduzz() {
-    if (loaded) return;
-    loaded = true;
-    var s = document.createElement('script');
-    s.src = 'https://cdn.eduzzcdn.com/sun/bridge/bridge.js';
-    s.type = 'module';
-    s.onload = function() {
-      if (document.readyState === 'complete') { initEduzz(); }
-      else { window.addEventListener('load', initEduzz, { once: true }); }
-    };
-    document.body.appendChild(s);
-  }
-
-  function initEduzz() {
-    window.Eduzz && window.Eduzz.Checkout && window.Eduzz.Checkout.init({
-      contentId: '1W3ZEGD5W2',
-      target: 'elements',
-      errorCover: true
-    });
-  }
-
-  /* IntersectionObserver: dispara quando o checkout entra na tela */
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(function(entries, obs) {
-      if (entries[0].isIntersecting) { loadEduzz(); obs.disconnect(); }
-    }, { rootMargin: '200px' }).observe(target);
-  } else {
-    /* fallback para browsers sem suporte */
-    window.addEventListener('load', loadEduzz, { once: true });
-  }
-})();
+/* ---- Meta Pixel + Clarity carregados abaixo ---- */
 </script>
 
 <!-- Meta Pixel + Microsoft Clarity — diferidos para depois do load -->
