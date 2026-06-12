@@ -623,7 +623,7 @@ function pickIdade(i, btn) {
       buildOpts('q4-opts', p2.q4opts, function(o4, b4){
         markSelected(b4);
         currentResult = o4.result;
-        currentDiagTexto = DIAG_LABELS[o4.result];
+        currentDiagTexto = o4.text;
         var p3 = PATHS[currentPath];
         document.getElementById('q5-title').textContent = p3.q5title(nm);
         buildOpts('q5-opts', p3.q5opts, function(o5, b5){
