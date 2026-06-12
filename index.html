@@ -1,1529 +1,680 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Programa Meu Cão Educado | Atividades para cães agitados e reativos</title>
-  <meta name="description" content="Aprenda atividades práticas para estimular o cérebro do seu cão, reduzir o estresse e desenvolver mais calma, foco e conexão em poucos minutos por dia." />
-  <meta property="og:title" content="Programa Meu Cão Educado - Diego Lima" />
-  <meta property="og:description" content="Um programa com mais de 60 atividades práticas para estimular o cérebro, reduzir o estresse, aumentar a atenção em você e melhorar o comportamento do seu cão dentro e fora de casa." />
-  <meta property="og:image" content="https://canilmeucaoeducado.github.io/meucaoeducado/preview.webp" />
-  <meta property="og:image:width" content="560" />
-  <meta property="og:image:height" content="350" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Programa Meu Cão Educado - Diego Lima" />
-  <meta name="twitter:description" content="Um programa com mais de 60 atividades práticas para estimular o cérebro, reduzir o estresse, aumentar a atenção em você e melhorar o comportamento do seu cão dentro e fora de casa." />
-  <meta name="twitter:image" content="https://canilmeucaoeducado.github.io/meucaoeducado/preview.webp" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz — Programa Meu Cão Educado</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-  <meta name="referrer" content="strict-origin-when-cross-origin" />
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SCZNN7T92E"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-SCZNN7T92E');
-  </script>
-
-  <!-- OTIMIZAÇÃO: apenas 2 preconnects essenciais (fontes) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-  <!-- LCP hero images: preload explícito -->
-  <link rel="preload" as="image" fetchpriority="high"
-        href="https://canilmeucaoeducado.github.io/meucaoeducado/mockup_meucaoeducado.webp"
-        type="image/webp" />
-  <link rel="preload" as="image" fetchpriority="high"
-        href="https://canilmeucaoeducado.github.io/meucaoeducado/assinatura%20diego%20lima.webp"
-        type="image/webp" />
-
-  <!-- Fonte: swap para evitar FOIT; carrega de forma não-bloqueante -->
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700;900&family=Dancing+Script:wght@700&display=swap"
-        media="print" onload="this.media='all'" />
-  <noscript>
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700;900&family=Dancing+Script:wght@700&display=swap" />
-  </noscript>
-
-  <style>
-    /* === FONT FALLBACK — evita CLS de fonte === */
-    @font-face {
-      font-family: 'DM Sans Fallback';
-      src: local('Arial');
-      ascent-override: 94%;
-      descent-override: 25%;
-      line-gap-override: 0%;
-      size-adjust: 103%;
-    }
-
-    /* === DESIGN TOKENS === */
-    :root {
-      --verde-escuro:  #0E8A3E;
-      --verde-medio:   #1DA752;
-      --verde-oliva:   #3DBF6A;
-      --sage-claro:    #A8DDB8;
-      --creme-verde:   #E6F5EC;
-      --branco:        #FFFFFF;
-      --preto:         #111111;
-      --font-sans: 'DM Sans', 'DM Sans Fallback', system-ui, sans-serif;
-      --font-cursiva: 'Dancing Script', cursive;
-    }
-
-    /* === RESET MÍNIMO === */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    /* === BASE === */
-    body {
-      background: var(--branco);
-      font-family: var(--font-sans);
-      color: var(--preto);
-      font-size: 16px;
-      line-height: 1.6;
-      /* Evita reflow de scrollbar no carrossel */
-      overflow-x: hidden;
-    }
-
-    /* Âncora de scroll suave — sem JS inline -->
-    html { scroll-behavior: smooth; }
-
-    .container {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    /* === HERO === */
-    .hero {
-      padding: 28px 20px 0;
-      text-align: center;
-      max-width: 560px;
-      margin: 0 auto;
-    }
-
-    /* Assinatura: dimensões fixas evitam CLS */
-    .hero-sig {
-      width: 220px;
-      height: 86px;
-      max-width: 60%;
-      display: inline-block;
-      margin-bottom: 16px;
-    }
-
-    .hero-name {
-      font-family: var(--font-cursiva);
-      font-size: clamp(1.8rem, 7vw, 2.4rem);
-      font-weight: 700;
-      color: var(--verde-escuro);
-      line-height: 1.1;
-      margin-bottom: 20px;
-      display: block;
-    }
-
-    .hero-promise {
-      font-size: clamp(1.7rem, 7vw, 2.5rem);
-      font-weight: 900;
-      line-height: 1.15;
-      margin-bottom: 14px;
-    }
-
-    .hero-promise u { text-decoration-color: var(--verde-medio); text-decoration-thickness: 3px; }
-
-    /* Mockup — aspect-ratio reserva espaço → sem CLS */
-    .hero-image-wrap {
-      margin: 0 auto 20px;
-      max-width: 560px;
-      /* Reserva espaço exato: 560x350 = 16/10 */
-      aspect-ratio: 560 / 350;
-      contain: layout;
-      width: 100%;
-    }
-
-    .hero-image-wrap img {
-      width: 100%;
-      height: auto;
-      border-radius: 16px;
-      display: block;
-    }
-
-    .hero-image-placeholder {
-      width: 100%;
-      aspect-ratio: 16 / 10;
-      background: linear-gradient(135deg, var(--creme-verde) 0%, #d0d0bc 100%);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--verde-escuro);
-      font-size: .9rem;
-      border: 2px dashed var(--verde-medio);
-    }
-
-    .hero-subtitle {
-      font-size: 1.05rem;
-      font-weight: 700;
-      line-height: 1.6;
-      margin-bottom: 6px;
-      text-align: left;
-    }
-
-    .hero-objections {
-      list-style: none;
-      margin: 12px 0 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      text-align: left;
-    }
-
-    .hero-objections li {
-      font-size: 1rem;
-      line-height: 1.5;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      justify-content: flex-start;
-    }
-
-    .hero-objections li::before {
-      content: "✓";
-      color: var(--verde-medio);
-      font-weight: 900;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
-    /* === BOTÃO CTA === */
-    .btn-cta {
-      display: inline-block;
-      background: #076B2E;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 10px;
-      padding: 16px 32px;
-      font-weight: 700;
-      font-size: 1.15rem;
-      letter-spacing: .03em;
-      text-align: center;
-      border: none;
-      line-height: 1.3;
-      width: 100%;
-      max-width: 420px;
-      cursor: pointer;
-      /* Transições via GPU — sem reflow */
-      transition: background-color .2s, transform .15s;
-      will-change: transform;
-    }
-
-    .btn-cta:hover { background: #054F22; transform: translateY(-2px); }
-
-    .btn-cta .btn-sub {
-      display: block;
-      font-size: .78rem;
-      font-weight: 500;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      opacity: .85;
-      margin-top: 2px;
-    }
-
-    .btn-cta-wrap { text-align: center; padding: 8px 20px 32px; }
-
-    .plans-guarantee {
-      text-align: center;
-      font-size: .82rem;
-      color: #1A5C32;
-      margin-top: 10px;
-    }
-
-    .section-divider { border: none; border-top: 1px solid var(--creme-verde); margin: 8px 0; }
-
-    /* === SEÇÃO MÉTODO — 4 BLOCOS === */
-    .method-section {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    .method-heading {
-      text-align: center;
-      padding: 8px 0 28px;
-    }
-
-    .method-heading h2 {
-      font-size: clamp(1.2rem, 5vw, 1.5rem);
-      font-weight: 800;
-      color: var(--preto);
-      line-height: 1.25;
-    }
-
-    .method-blocks {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .method-block {
-      background: var(--creme-verde);
-      border-radius: 16px;
-      padding: 24px 24px 20px;
-    }
-
-    .method-block-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 6px;
-    }
-
-    .method-block-dot { display: none; }
-
-    .method-block-title {
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: var(--verde-escuro);
-      line-height: 1.2;
-    }
-
-    .method-block-lead {
-      font-size: .93rem;
-      color: #555;
-      line-height: 1.5;
-      margin-bottom: 14px;
-      padding-left: 20px;
-    }
-
-    .method-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      padding-left: 20px;
-    }
-
-    .method-tag {
-      font-size: .78rem;
-      font-weight: 600;
-      color: #555;
-      background: transparent;
-      border-radius: 0;
-      padding: 0;
-      line-height: 1.6;
-    }
-
-    .method-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px 14px;
-      padding-left: 20px;
-    }
-
-    .method-tags::before {
-      content: '';
-    }
-
-    .method-tag::before {
-      content: '· ';
-      color: var(--verde-medio);
-      font-weight: 900;
-    }
-
-    @media (max-width: 480px) {
-      .method-section { padding: 0 12px; }
-      .method-block { padding: 20px 18px 18px; }
-      .method-block-title { font-size: 1rem; }
-    }
-
-    .closing-box {
-      background: var(--creme-verde);
-      border-radius: 12px;
-      padding: 20px 24px;
-      text-align: center;
-      max-width: 700px;
-      margin: 20px auto;
-    }
-
-    .closing-box p {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--verde-escuro);
-      line-height: 1.5;
-    }
-
-    /* === FAQs === */
-    .faq-heading-box {
-      padding: 14px 24px;
-      text-align: center;
-      max-width: 700px;
-      margin: 32px auto 0;
-    }
-
-    .faq-heading-box h2 {
-      color: var(--verde-escuro);
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
-
-    .faq-card {
-      border: 2px solid var(--verde-escuro);
-      border-radius: 14px;
-      padding: 8px 0;
-      max-width: 700px;
-      margin: 12px auto 24px;
-      background: var(--creme-verde);
-    }
-
-    .faq-item { border-bottom: 1px solid var(--sage-claro); }
-    .faq-item:last-child { border-bottom: none; }
-
-    .faq-question {
-      width: 100%;
-      background: none;
-      border: none;
-      cursor: pointer;
-      text-align: left;
-      padding: 16px 22px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-size: .97rem;
-      font-weight: 700;
-      color: #065A28;
-      transition: color .15s;
-    }
-
-    .faq-question:hover { color: var(--verde-escuro); }
-
-    .faq-plus {
-      font-size: 1.1rem;
-      font-weight: 400;
-      min-width: 16px;
-      /* GPU — sem reflow */
-      transition: transform .2s;
-      color: var(--verde-escuro);
-    }
-
-    .faq-item.open .faq-plus { transform: rotate(45deg); }
-
-    /* Substituímos display:none/block por height + overflow — evita CLS e reflow */
-    .faq-answer {
-      overflow: hidden;
-      max-height: 0;
-      padding: 0 22px 0 52px;
-      font-size: .95rem;
-      line-height: 1.6;
-      transition: max-height .25s ease, padding-bottom .25s ease;
-    }
-
-    .faq-item.open .faq-answer { max-height: 400px; padding-bottom: 16px; }
-
-    /* === FOOTER === */
-    footer {
-      background: #065A28;
-      text-align: center;
-      padding: 24px 20px;
-      font-size: .85rem;
-      color: #fff;
-      margin-top: 8px;
-    }
-
-    /* === PROVA SOCIAL === */
-    .proof-section { padding-bottom: 8px; }
-
-    .proof-section-head {
-      text-align: center;
-      padding: 32px 20px 16px;
-    }
-
-    .proof-section-head h2 {
-      max-width: 700px;
-      margin: 0 auto;
-      font-size: clamp(1.1rem, 5vw, 1.5rem);
-      font-weight: 800;
-      color: var(--verde-escuro);
-      line-height: 1.2;
-      letter-spacing: .02em;
-    }
-
-    .proof-carousel-wrap {
-      position: relative;
-      overflow: hidden;
-      padding: 0 0 40px;
-    }
-
-    .proof-carousel {
-      display: flex;
-      gap: 14px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      padding: 0 20px 8px;
-    }
-
-    .proof-carousel::-webkit-scrollbar { display: none; }
-
-    .proof-card {
-      flex: 0 0 280px;
-      border-radius: 14px;
-      background: var(--creme-verde);
-      scroll-snap-align: start;
-      overflow: hidden;
-      border: 2px solid var(--verde-escuro);
-      contain: layout style;
-    }
-
-    .proof-card img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      display: block;
-      background: #fff;
-    }
-
-    .proof-arrow {
-      position: absolute;
-      top: 45%;
-      transform: translateY(-50%);
-      background: var(--verde-escuro);
-      color: #fff;
-      border: none;
-      border-radius: 50%;
-      width: 38px; height: 38px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: .85;
-      transition: opacity .2s;
-      z-index: 2;
-    }
-
-    .proof-arrow:hover { opacity: 1; }
-    .proof-arrow-prev { left: 6px; }
-    .proof-arrow-next { right: 6px; }
-
-    .proof-dots { display: flex; justify-content: center; gap: 6px; margin-top: 12px; }
-
-    .proof-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--sage-claro);
-      cursor: pointer;
-      transition: background .2s;
-    }
-
-    .proof-dot.active { background: var(--verde-escuro); }
-
-    /* === PLANOS === */
-    .plans-wrap { max-width: 700px; margin: 28px auto 0; padding: 0 20px 16px; }
-
-    .plans-title {
-      text-align: center;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--verde-escuro);
-      margin-bottom: 16px;
-      letter-spacing: .01em;
-      text-transform: uppercase;
-    }
-
-    .plans-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      align-items: start;
-    }
-
-    .plan-card {
-      border: 2px solid var(--verde-medio);
-      border-radius: 16px;
-      padding: 22px 18px 20px;
-      background: var(--creme-verde);
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      position: relative;
-    }
-
-    .plan-card-featured {
-      border-color: var(--verde-escuro);
-      background: var(--branco);
-      box-shadow: 0 4px 18px rgba(59,77,30,.13);
-    }
-
-    .plan-popular-tag {
-      position: absolute;
-      top: -13px; left: 50%;
-      transform: translateX(-50%);
-      background: var(--verde-escuro);
-      color: var(--branco);
-      font-size: .68rem;
-      font-weight: 700;
-      letter-spacing: .09em;
-      text-transform: uppercase;
-      padding: 4px 12px;
-      border-radius: 20px;
-      white-space: nowrap;
-    }
-
-    .plan-badge {
-      font-size: .85rem;
-      font-weight: 700;
-      text-align: center;
-      text-transform: uppercase;
-      letter-spacing: .04em;
-      padding: 6px 10px;
-      border-radius: 8px;
-    }
-
-    .plan-badge-basic { background: var(--sage-claro); color: var(--verde-escuro); }
-    .plan-badge-featured { background: var(--verde-escuro); color: var(--branco); }
-
-    .plan-price-wrap { text-align: center; line-height: 1; }
-
-    .plan-price {
-      font-size: 2.2rem;
-      font-weight: 900;
-      color: var(--verde-escuro);
-    }
-
-    .plan-price-cents {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--verde-escuro);
-      vertical-align: super;
-    }
-
-    .plan-features {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-      flex: 1;
-    }
-
-    .plan-features li {
-      font-size: .83rem;
-      padding-left: 18px;
-      position: relative;
-      line-height: 1.4;
-    }
-
-    .plan-features li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: var(--verde-medio);
-      font-weight: 700;
-    }
-
-    .plan-card-featured .plan-features li::before { color: var(--verde-escuro); }
-
-    .btn-plan {
-      display: block;
-      text-align: center;
-      text-decoration: none;
-      border-radius: 10px;
-      padding: 13px 10px;
-      font-weight: 700;
-      font-size: .78rem;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-      transition: background-color .2s, transform .15s;
-      margin-top: 4px;
-      will-change: transform;
-    }
-
-    .btn-plan:hover { transform: translateY(-2px); }
-    .btn-plan-basic { background: var(--verde-medio); color: var(--branco); }
-    .btn-plan-basic:hover { background: var(--verde-escuro); }
-    .btn-plan-featured { background: var(--verde-escuro); color: var(--branco); }
-    .btn-plan-featured:hover { background: var(--preto); }
-
-    /* === VISÃO DE FUTURO === */
-    .benefits-wrap {
-      max-width: 560px;
-      margin: 0 auto;
-      padding: 40px 20px 16px;
-      text-align: center;
-    }
-
-    .benefits-title {
-      font-size: clamp(1.3rem, 5vw, 1.6rem);
-      font-weight: 900;
-      color: var(--preto);
-      margin-bottom: 28px;
-      line-height: 1.2;
-    }
-
-    .benefits-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      align-items: center;
-    }
-
-    .benefits-list li {
-      font-size: 1rem;
-      line-height: 1.55;
-      font-weight: 500;
-      color: #222;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-align: left;
-      max-width: 480px;
-      width: 100%;
-    }
-
-    .benefits-list li::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      min-width: 7px;
-      border-radius: 50%;
-      background: var(--verde-medio);
-      opacity: .85;
-      flex-shrink: 0;
-    }
-
-    /* === QUEM É DIEGO LIMA === */
-    .about-section {
-      padding: 8px 20px 32px;
-    }
-
-    .about-card {
-      max-width: 700px;
-      margin: 0 auto;
-      background: #f7fbf8;
-      border: 1.5px solid var(--sage-claro);
-      border-radius: 20px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .about-inner {
-      display: flex;
-      align-items: stretch;
-      gap: 0;
-    }
-
-    .about-photo-col {
-      flex: 0 0 42%;
-      position: relative;
-      min-height: 380px;
-    }
-
-    .about-photo-col img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 30%;
-      display: block;
-    }
-
-    .about-text-col {
-      flex: 1;
-      padding: 28px 24px 28px 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 0;
-    }
-
-    .about-eyebrow {
-      display: block;
-      font-size: .72rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--verde-medio);
-      margin-bottom: 8px;
-      line-height: 1.4;
-    }
-
-    .about-name {
-      font-size: clamp(1.6rem, 5vw, 2.2rem);
-      font-weight: 900;
-      line-height: 1.0;
-      margin-bottom: 10px;
-    }
-
-    .about-name span { color: var(--verde-medio); display: inline; }
-
-    .about-bio {
-      font-size: .83rem;
-      line-height: 1.6;
-      color: #555;
-      margin-bottom: 18px;
-    }
-
-    .about-items {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .about-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
-
-    .about-icon {
-      width: 8px;
-      height: 8px;
-      min-width: 8px;
-      background: var(--verde-medio);
-      border-radius: 50%;
-      margin-top: 6px;
-      opacity: .85;
-    }
-
-    .about-item-text {
-      font-size: .82rem;
-      line-height: 1.55;
-      color: #333;
-    }
-
-    .about-item-text strong { color: var(--verde-escuro); font-weight: 700; }
-
-    @media (max-width: 520px) {
-      .about-inner { flex-direction: column; }
-      .about-photo-col { flex: none; min-height: 0; height: 280px; max-height: 280px; }
-      .about-photo-col img { height: 100%; }
-      .about-text-col { padding: 20px 18px 24px; }
-      .about-name { font-size: 1.6rem; }
-    }
-
-    /* === MOBILE === */
-    @media (max-width: 480px) {
-      .hero { padding: 20px 16px 0; }
-      .hero-name { font-size: 1.7rem; margin-bottom: 14px; }
-      .hero-promise { font-size: 1.55rem; }
-      .hero-subtitle { font-size: .97rem; }
-      .hero-objections li { font-size: .95rem; }
-      .btn-cta { font-size: 1.1rem; padding: 16px 20px; width: 100%; max-width: 420px; }
-      .btn-cta-wrap { padding: 8px 20px 24px; }
-      .section-heading-box, .faq-heading-box { margin-left: 12px; margin-right: 12px; padding: 10px 12px; }
-      .faq-heading-box h2 { font-size: 1.2rem; }
-      .closing-box { margin-left: 12px; margin-right: 12px; padding: 14px 16px; }
-      .closing-box p { font-size: .95rem; }
-      .faq-card { margin-left: 12px; margin-right: 12px; }
-      .faq-question { font-size: .92rem; padding: 14px 16px; gap: 10px; }
-      .faq-answer { padding-left: 38px; font-size: .9rem; }
-      .proof-card { flex: 0 0 88vw; }
-      .proof-arrow { display: none; }
-      .proof-section-head { padding: 24px 16px 12px; }
-      .plans-grid { gap: 10px; }
-      .plan-card { padding: 18px 12px 16px; }
-      .plan-price { font-size: 1.8rem; }
-      .plan-features li { font-size: .78rem; }
-      .btn-plan { font-size: .72rem; padding: 11px 6px; }
-    }
-
-    @media (max-width: 360px) {
-      .hero-promise { font-size: 1.35rem; }
-      .proof-card { flex: 0 0 94vw; }
-      .btn-cta { font-size: 1rem; padding: 14px 16px; }
-    }
-
-    @media (max-width: 340px) {
-      .plans-grid { grid-template-columns: 1fr; }
-    }
-
-    /* === PRÉ-CTA COPY === */
-    .precta-wrap {
-      text-align: center;
-      margin-bottom: 16px;
-    }
-
-    .precta-intro {
-      font-size: .95rem;
-      font-weight: 600;
-      color: #888;
-      letter-spacing: .01em;
-      margin-bottom: 6px;
-    }
-
-    .precta-headline {
-      font-size: clamp(1.1rem, 4vw, 1.25rem);
-      font-weight: 800;
-      color: var(--preto);
-      line-height: 1.35;
-    }
-    .emotional-section {
-      max-width: 560px;
-      margin: 0 auto;
-      padding: 32px 20px 16px;
-    }
-
-    .emotional-title {
-      font-size: clamp(1.25rem, 5vw, 1.6rem);
-      font-weight: 900;
-      color: var(--preto);
-      line-height: 1.2;
-      margin-bottom: 36px;
-      text-align: center;
-    }
-
-    .emotional-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      margin-bottom: 40px;
-      padding: 0 8px;
-    }
-
-    .emotional-list li {
-      font-size: 1.05rem;
-      line-height: 1.55;
-      font-weight: 500;
-      color: #222;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .emotional-list li::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      min-width: 7px;
-      border-radius: 50%;
-      background: var(--verde-medio);
-      opacity: .85;
-    }
-
-    .emotional-highlight {
-      background: var(--creme-verde);
-      border-radius: 14px;
-      padding: 20px 24px;
-      margin-bottom: 12px;
-    }
-
-    .emotional-highlight p {
-      font-size: 1.05rem;
-      line-height: 1.7;
-      color: var(--preto);
-    }
-
-    .emotional-highlight strong {
-      font-weight: 900;
-      color: var(--verde-escuro);
-    }
-
-    .emotional-mechanism {
-      padding: 4px 8px 8px;
-      margin-top: -4px;
-    }
-
-    .emotional-mechanism p {
-      font-size: .97rem;
-      line-height: 1.7;
-      color: #555;
-      text-align: center;
-    }
-
-    .emotional-mechanism strong {
-      color: var(--preto);
-      font-weight: 700;
-    }
-
-    @media (max-width: 480px) {
-      .emotional-section { padding: 36px 16px 8px; }
-      .emotional-list { padding: 0; gap: 16px; }
-      .emotional-list li { font-size: 1rem; }
-      .emotional-highlight { padding: 22px 20px; }
-    }
-  </style>
-</head>
-
-<body>
-<main id="conteudo-principal">
-
-  <!-- ===== HERO ===== -->
-  <section class="hero">
-
-    <p style="text-align:center;font-size:1rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--verde-escuro);margin-bottom:16px;">Para cães agitados, ansiosos e reativos</p>
-
-    <h1 class="hero-promise">
-      <span style="color:var(--preto);">Seu cão puxa no passeio, late pra tudo e não presta atenção em você?</span>
-    </h1>
-
-    <p class="hero-subtitle" style="font-weight:400;color:#555;text-align:center;font-size:1rem;margin-bottom:4px;">
-      Ajude seu cão a desenvolver
-    </p>
-    <p style="text-align:center;font-size:clamp(1.1rem,5vw,1.35rem);font-weight:900;letter-spacing:.04em;margin-bottom:20px;line-height:1.3;">
-      <span style="color:var(--verde-escuro);">CALMA</span>
-      <span style="color:#999;font-weight:400;font-size:.85em;margin:0 6px;">•</span>
-      <span style="color:var(--verde-escuro);">FOCO</span>
-      <span style="color:#999;font-weight:400;font-size:.85em;margin:0 6px;">•</span>
-      <span style="color:var(--verde-escuro);">CONEXÃO</span>
-      <span style="display:block;font-size:clamp(.88rem,3.5vw,1rem);font-weight:500;color:#555;letter-spacing:.01em;margin-top:4px;">em poucos minutos por dia.</span>
-    </p>
-
-    <div class="hero-image-wrap">
-      <picture>
-        <source
-          type="image/webp"
-          srcset="
-            https://canilmeucaoeducado.github.io/meucaoeducado/mockup_meucaoeducado.webp 560w,
-            https://canilmeucaoeducado.github.io/meucaoeducado/mockup_meucaoeducado.webp 1120w
-          "
-          sizes="(max-width:600px) calc(100vw - 40px), 560px"
-        />
-        <img
-          src="https://canilmeucaoeducado.github.io/meucaoeducado/mockup_meucaoeducado.webp"
-          alt="Mockup do Programa Online Meu Cão Educado — Diego Lima Veterinário e Adestrador"
-          fetchpriority="high"
-          decoding="sync"
-          width="560"
-          height="350"
-          style="width:100%;height:auto;border-radius:16px;display:block;"
-          onerror="this.closest('picture').style.display='none';this.closest('.hero-image-wrap').querySelector('.hero-image-placeholder').style.display='flex';"
-        />
-      </picture>
-      <div class="hero-image-placeholder" style="display:none;">[SUBSTITUA PELA IMAGEM DO PRODUTO]</div>
-    </div>
-
-    <p style="text-align:center;font-size:.82rem;color:#555;margin:10px 0 20px;letter-spacing:.02em;">
-      Criado por <strong style="color:var(--preto);">Diego Lima</strong> · Veterinário Especialista em Comportamento Canino
-    </p>
-
-    <div style="background:#f4faf6;border-radius:14px;padding:18px 20px 20px;margin:16px 0 24px;text-align:left;">
-      <p style="font-weight:800;font-size:1rem;margin-bottom:14px;color:var(--verde-escuro);line-height:1.35;">Este programa é para você que tem um cão que…</p>
-      <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;">
-        <li style="font-size:.97rem;line-height:1.5;display:flex;align-items:flex-start;gap:9px;color:#222;"><span style="flex-shrink:0;margin-top:1px;">✅</span> Puxa durante os passeios</li>
-        <li style="font-size:.97rem;line-height:1.5;display:flex;align-items:flex-start;gap:9px;color:#222;"><span style="flex-shrink:0;margin-top:1px;">✅</span> Late para cães, pessoas ou barulhos</li>
-        <li style="font-size:.97rem;line-height:1.5;display:flex;align-items:flex-start;gap:9px;color:#222;"><span style="flex-shrink:0;margin-top:1px;">✅</span> Parece acelerado o tempo inteiro</li>
-        <li style="font-size:.97rem;line-height:1.5;display:flex;align-items:flex-start;gap:9px;color:#222;"><span style="flex-shrink:0;margin-top:1px;">✅</span> Não consegue relaxar dentro de casa</li>
-        <li style="font-size:.97rem;line-height:1.5;display:flex;align-items:flex-start;gap:9px;color:#222;"><span style="flex-shrink:0;margin-top:1px;">✅</span> Ignora você quando existe alguma distração</li>
-        <li style="font-size:.97rem;line-height:1.5;display:flex;align-items:flex-start;gap:9px;color:#222;"><span style="flex-shrink:0;margin-top:1px;">✅</span> Faz você repetir o mesmo comando várias vezes</li>
-      </ul>
-    </div>
-
-    <div style="background:#f7fbf8;border:1.5px solid var(--sage-claro);border-radius:14px;padding:18px 20px;margin:0 0 20px;text-align:center;max-width:420px;margin-left:auto;margin-right:auto;">
-      <p style="color:var(--verde-medio);font-size:1rem;letter-spacing:.08em;margin-bottom:10px;">★★★★★</p>
-      <p style="font-size:.9rem;line-height:1.65;color:#333;font-style:italic;margin-bottom:10px;">"Antes o Fly puxava muito, não me obedecia e os passeios eram muito estressantes. Hoje ele está muito mais tranquilo e obediente."</p>
-      <p style="font-size:.78rem;font-weight:700;color:#777;letter-spacing:.04em;text-transform:uppercase;">Rosângela Marchesini</p>
-    </div>
-
-    <p style="font-size:.97rem;color:#555;text-align:center;margin-bottom:12px;">Seu cão aprende a desacelerar. E a convivência com ele volta a ser mais leve.</p>
-    <div style="text-align:center;padding:0 20px;">
-    <a href="https://chk.eduzz.com/dwt7yr3b" class="btn-cta" target="_blank" rel="noopener">
-      Quero Ensinar Meu Cão
-    </a>
-    </div>
-    <p class="plans-guarantee" style="margin-top:10px;margin-bottom:32px;">Acesso imediato • Garantia incondicional de 7 dias</p>
-
-  </section>
-
-  <!-- ===== SEÇÃO EMOCIONAL ===== -->
-  <section class="emotional-section">
-
-    <h2 class="emotional-title">Talvez você esteja passando por isso…</h2>
-
-    <ul class="emotional-list">
-      <li>Você sai para passear tentando relaxar... e volta para casa mais cansado do que quando saiu.</li>
-      <li>Seu cão vê outro cachorro, uma pessoa ou qualquer distração... e parece esquecer completamente que você existe.</li>
-      <li>Você repete o mesmo comando várias vezes e sente que ele simplesmente não escuta.</li>
-      <li>Você gostaria de ter um cão mais tranquilo dentro de casa, mas ele parece estar sempre acelerado.</li>
-      <li>A campainha toca, uma visita chega ou acontece qualquer novidade... e o caos começa.</li>
-      <li>Você ama seu cão, mas às vezes sente que a convivência está mais difícil do que deveria.</li>
-    </ul>
-
-    <div class="emotional-highlight">
-      <p><strong>E o mais frustrante?</strong><br>
-      Você tenta gastar energia, passear mais ou corrigir o comportamento, mas os problemas continuam aparecendo.</p>
-    </div>
-
-    <div class="emotional-mechanism">
-      <p>Isso acontece porque muitos cães não precisam apenas de mais exercício.<br>
-      Eles precisam desenvolver habilidades como <strong>calma, foco, autocontrole e conexão.</strong><br>
-      E é exatamente isso que você vai ensinar dentro do Programa Meu Cão Educado.</p>
-    </div>
-
-  </section>
-
-  <!-- ===== MÉTODO — 4 BLOCOS ===== -->
-  <div class="method-section">
-
-    <div class="method-heading">
-      <h2>Desenvolva as habilidades que estão por trás de um cão mais calmo e obediente</h2>
-      <p style="font-size:.97rem;color:#555;line-height:1.6;margin-top:10px;max-width:560px;margin-left:auto;margin-right:auto;">Muitos problemas de comportamento melhoram quando o cão aprende a ter mais foco, autocontrole, confiança e conexão com você.</p>
-    </div>
-
-    <div class="method-blocks">
-
-      <div class="method-block">
-        <div class="method-block-header">
-          <div class="method-block-dot"></div>
-          <p class="method-block-title">Ajude seu cão a tomar decisões melhores</p>
-        </div>
-        <p class="method-block-lead">Atividades que estimulam o cérebro, desenvolvem autocontrole e ajudam seu cão a pensar antes de agir. Ideal para cães que puxam, latem, roubam comida, pulam nas pessoas ou vivem agindo por impulso.</p>
-        <div class="method-tags">
-          <span class="method-tag">Autocontrole</span>
-          <span class="method-tag">Foco</span>
-          <span class="method-tag">Tomada de decisão</span>
-          <span class="method-tag">Controle de impulsos</span>
-        </div>
-      </div>
-
-      <div class="method-block">
-        <div class="method-block-header">
-          <div class="method-block-dot"></div>
-          <p class="method-block-title">Cansar não é o suficiente</p>
-        </div>
-        <p class="method-block-lead">Aprenda atividades que reduzem o estresse, estimulam o cérebro e ajudam seu cão a relaxar de verdade. Perfeito para cães agitados, acelerados ou que parecem ter energia infinita.</p>
-        <div class="method-tags">
-          <span class="method-tag">Estimulação mental</span>
-          <span class="method-tag">Redução de estresse</span>
-          <span class="method-tag">Faro</span>
-          <span class="method-tag">Resolução de problemas</span>
-        </div>
-      </div>
-
-      <div class="method-block">
-        <div class="method-block-header">
-          <div class="method-block-dot"></div>
-          <p class="method-block-title">Faça seu cão prestar mais atenção em você</p>
-        </div>
-        <p class="method-block-lead">Atividades que fortalecem a conexão, desenvolvem foco e ajudam seu cão a lidar melhor com distrações durante os passeios.</p>
-        <div class="method-tags">
-          <span class="method-tag">Conexão</span>
-          <span class="method-tag">Foco</span>
-          <span class="method-tag">Passeios</span>
-          <span class="method-tag">Distrações</span>
-        </div>
-      </div>
-
-      <div class="method-block">
-        <div class="method-block-header">
-          <div class="method-block-dot"></div>
-          <p class="method-block-title">Um cão mais confiante e equilibrado</p>
-        </div>
-        <p class="method-block-lead">Atividades que desenvolvem consciência corporal, fortalecem a confiança e ajudam na regulação emocional. Ideal para cães inseguros, ansiosos ou que reagem demais ao ambiente.</p>
-        <div class="method-tags">
-          <span class="method-tag">Confiança</span>
-          <span class="method-tag">Consciência corporal</span>
-          <span class="method-tag">Regulação emocional</span>
-          <span class="method-tag">Equilíbrio emocional</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="btn-cta-wrap">
-    <div class="precta-wrap"><p class="precta-intro">Pequenas atividades.</p><p class="precta-headline">Mais calma, conexão e equilíbrio no dia a dia com seu cão.</p></div>
-    <a href="https://chk.eduzz.com/dwt7yr3b" class="btn-cta" target="_blank" rel="noopener">
-      Quero Ensinar Meu Cão
-    </a>
-    <p class="plans-guarantee">Acesso imediato • Garantia incondicional de 7 dias</p>
-  </div>
-
-  <!-- ===== O QUE VOCÊ VAI ENCONTRAR ===== -->
-  <div style="max-width:700px;margin:0 auto;padding:8px 20px 32px;">
-    <div style="text-align:center;margin-bottom:24px;">
-      <h2 style="font-size:clamp(1.2rem,5vw,1.5rem);font-weight:800;color:var(--preto);line-height:1.25;margin-bottom:10px;">O que você vai encontrar dentro do Programa Meu Cão Educado</h2>
-      <p style="font-size:.97rem;color:#555;line-height:1.6;max-width:540px;margin:0 auto;">Mais de 60 atividades organizadas para ajudar seu cão a desenvolver calma, foco, autocontrole, confiança e conexão no dia a dia.</p>
-    </div>
-
-    <div style="background:var(--creme-verde);border-radius:16px;padding:24px 24px 20px;">
-      <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:13px;">
-        <li style="font-size:.97rem;line-height:1.5;display:flex;align-items:flex-start;gap:10px;color:#222;"><span style="flex-shrink:0;margin-top:1px;">✅</span> Atividades para ajudar seu cão a relaxar dentro de casa</li>
-        <li style="font-size:.97rem;line-height:1.5;display:flex;align-items:flex-start;gap:10px;color:#222;"><span style="flex-shrink:0;margin-top:1px;">✅</span> Atividades para aumentar a atenção durante os passeios</li>
-        <li style="font-size:.97rem;line-height:1.5;display:flex;align-items:flex-start;gap:10px;color:#222;"><span style="flex-shrink:0;margin-top:1px;">✅</span> Jogos de faro para estimular o cérebro e reduzir o estresse</li>
-        <li style="font-size:.97rem;line-height:1.5;display:flex;align-items:flex-start;gap:10px;color:#222;"><span style="flex-shrink:0;margin-top:1px;">✅</span> Atividades para cães muito agitados ou acelerados</li>
-        <li style="font-size:.97rem;line-height:1.5;display:flex;align-items:flex-start;gap:10px;color:#222;"><span style="flex-shrink:0;margin-top:1px;">✅</span> Atividades de autocontrole e tomada de decisão</li>
-        <li style="font-size:.97rem;line-height:1.5;display:flex;align-items:flex-start;gap:10px;color:#222;"><span style="flex-shrink:0;margin-top:1px;">✅</span> Atividades para fortalecer a conexão entre você e seu cão</li>
-        <li style="font-size:.97rem;line-height:1.5;display:flex;align-items:flex-start;gap:10px;color:#222;"><span style="flex-shrink:0;margin-top:1px;">✅</span> Atividades para desenvolver confiança e equilíbrio emocional</li>
-        <li style="font-size:.97rem;line-height:1.5;display:flex;align-items:flex-start;gap:10px;color:#222;"><span style="flex-shrink:0;margin-top:1px;">✅</span> Protocolos simples que levam apenas alguns minutos por dia</li>
-      </ul>
-
-      <div style="border-top:1px solid var(--sage-claro);margin-top:20px;padding-top:18px;text-align:center;">
-        <p style="font-size:.97rem;font-weight:700;color:var(--verde-escuro);line-height:1.6;margin-bottom:4px;">Mais de 60 atividades organizadas por objetivo e nível de dificuldade.</p>
-        <p style="font-size:.93rem;color:#555;line-height:1.6;">Assim você sabe exatamente por onde começar, mesmo que nunca tenha treinado um cão antes.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== PROVA SOCIAL ===== -->
-  <section class="proof-section">
-    <div class="proof-section-head">
-      <h2>Veja como a convivência muda quando o cão aprende a relaxar</h2>
-      <p style="font-size:.95rem;color:#555;margin-top:12px;line-height:1.6;max-width:520px;margin-left:auto;margin-right:auto;">A maioria desses cães tinha exatamente os mesmos problemas: passeios estressantes, ansiedade e agitação, latidos e reatividade, falta de atenção, dificuldade de relaxar…</p>
-    </div>
-
-    <div class="proof-carousel-wrap">
-      <div class="proof-carousel" id="proofCarousel">
-
-        <div class="proof-card">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/Depoimentos_Dior.webp"
-               alt="Depoimento Dior" width="280" height="350"
-               loading="lazy" decoding="async">
-        </div>
-        <div class="proof-card">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/depoimento_ramon_doguealemao.webp"
-               alt="Depoimento Ramon e Dogue Alemão" width="280" height="350"
-               loading="lazy" decoding="async">
-        </div>
-        <div class="proof-card">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/depoimento_rosangela_fly.webp"
-               alt="Depoimento Rosangela e Fly" width="280" height="350"
-               loading="lazy" decoding="async">
-        </div>
-        <div class="proof-card">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card5.webp"
-               alt="Depoimento Kiara e Maia" width="280" height="350"
-               loading="lazy" decoding="async">
-        </div>
-        <div class="proof-card">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/depoime_mari_tully.webp"
-               alt="Depoimento Mari e Tully" width="280" height="350"
-               loading="lazy" decoding="async">
-        </div>
-        <div class="proof-card">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card2.webp"
-               alt="Depoimento Pedro e Rock" width="280" height="350"
-               loading="lazy" decoding="async">
-        </div>
-        <div class="proof-card">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card6.webp"
-               alt="Depoimento Nero" width="280" height="350"
-               loading="lazy" decoding="async">
-        </div>
-        <div class="proof-card">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card7.webp"
-               alt="Depoimento card7" width="280" height="350"
-               loading="lazy" decoding="async">
-        </div>
-        <div class="proof-card">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card4.webp"
-               alt="Depoimento Beto e Max" width="280" height="350"
-               loading="lazy" decoding="async">
-        </div>
-        <div class="proof-card">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card8.webp"
-               alt="Depoimento card8" width="280" height="350"
-               loading="lazy" decoding="async">
-        </div>
-        <div class="proof-card">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card3.webp"
-               alt="Depoimento Ros e Duque" width="280" height="350"
-               loading="lazy" decoding="async">
-        </div>
-        <div class="proof-card">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/depoimento_Fred_Yorkshire.webp"
-               alt="Depoimento Fred Yorkshire" width="280" height="350"
-               loading="lazy" decoding="async">
-        </div>
-        <div class="proof-card">
-          <img src="https://canilmeucaoeducado.github.io/meucaoeducado/card1.webp"
-               alt="Depoimento Jeane e Jade" width="280" height="350"
-               loading="lazy" decoding="async">
-        </div>
-
-      </div>
-
-      <button class="proof-arrow proof-arrow-prev" id="proofPrev" aria-label="Anterior">&#8592;</button>
-      <button class="proof-arrow proof-arrow-next" id="proofNext" aria-label="Próximo">&#8594;</button>
-      <div class="proof-dots" id="proofDots"></div>
-    </div>
-  </section>
-
-  <!-- ===== USE ESTAS BRINCADEIRAS PARA ===== -->
-  <div class="benefits-wrap">
-    <h2 class="benefits-title">Com as atividades certas, seu cão aprende a…</h2>
-    <ul class="benefits-list">
-      <li>Prestar atenção em você mesmo em ambientes cheios de distrações</li>
-      <li>Desacelerar e relaxar mesmo nos dias mais corridos</li>
-      <li>Lidar melhor com frustrações sem reagir o tempo inteiro</li>
-      <li>Ganhar mais confiança e equilíbrio emocional</li>
-      <li>Canalizar a energia sem viver acelerado o tempo inteiro</li>
-      <li>Criar uma convivência mais leve e conectada com você</li>
-    </ul>
-  </div>
-
-  <!-- ===== CTA PREÇO 2 ===== -->
-  <div style="text-align:center;padding:24px 20px 8px;">
-    <p style="font-size:.97rem;color:#555;margin-bottom:12px;">Mais calma para o seu cão. Mais tranquilidade para você.</p>
-    <a href="https://chk.eduzz.com/dwt7yr3b" class="btn-cta" style="max-width:420px;display:inline-block;" target="_blank" rel="noopener">
-      Quero Ensinar Meu Cão
-    </a>
-    <p class="plans-guarantee" style="margin-top:16px;">Acesso imediato • Garantia incondicional de 7 dias</p>
-  </div>
-
-  <!-- ===== FAQs ===== -->
-  <div class="container">
-    <div class="faq-heading-box">
-      <h2>PERGUNTAS FREQUENTES</h2>
-    </div>
-
-    <div class="faq-card">
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-plus" aria-hidden="true">+</span>
-          Funciona para qualquer raça e idade?
-        </button>
-        <div class="faq-answer">
-          Sim. O programa é baseado em ciência comportamental canina e funciona independentemente da raça, tamanho ou idade do seu cão, desde que ele seja saudável.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-plus" aria-hidden="true">+</span>
-          Funciona mesmo para cães muito agitados ou que "não obedecem"?
-        </button>
-        <div class="faq-answer">
-          Sim. Mesmo cães mais agitados, teimosos ou que parecem "não prestar atenção" conseguem evoluir quando você usa as atividades certas e cria mais clareza na comunicação com eles.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-plus" aria-hidden="true">+</span>
-          Em quanto tempo meu cão pode começar a mudar?
-        </button>
-        <div class="faq-answer">
-          Muitas pessoas já percebem diferenças nas primeiras semanas, principalmente em foco, atenção e calma no dia a dia. Mas a evolução depende da frequência das atividades e da rotina de cada cão.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-plus" aria-hidden="true">+</span>
-          Preciso ter experiência ou conhecimento em adestramento?
-        </button>
-        <div class="faq-answer">
-          Não. O programa foi criado para pessoas comuns. As atividades são explicadas em vídeos, fotos e textos passo a passo para que qualquer pessoa consiga aplicar no dia a dia, mesmo sem experiência prévia.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-plus" aria-hidden="true">+</span>
-          Preciso de horas de treino por dia?
-        </button>
-        <div class="faq-answer">
-          Não. A maioria das atividades leva entre 5 e 10 minutos e pode ser encaixada facilmente na rotina do dia a dia.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-plus" aria-hidden="true">+</span>
-          Preciso de algum equipamento especial?
-        </button>
-        <div class="faq-answer">
-          Não. Você só vai precisar de uma guia, petiscos e alguns objetos que provavelmente já tem em casa.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-plus" aria-hidden="true">+</span>
-          Como vou acessar o programa após a compra?
-        </button>
-        <div class="faq-answer">
-          O programa é 100% online e você recebe acesso imediato após a compra. Após a confirmação do pagamento, você recebe por e-mail os dados de acesso à plataforma Nutror/Eduzz. As atividades são organizadas por módulos e níveis de dificuldade, com explicações em vídeos, fotos e textos para facilitar a aplicação no dia a dia. Você pode acessar quando quiser, no seu ritmo, pelo celular, tablet ou computador. Não existem aulas ao vivo obrigatórias nem horários marcados.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-plus" aria-hidden="true">+</span>
-          As atividades substituem os passeios?
-        </button>
-        <div class="faq-answer">
-          Não. Os passeios continuam sendo importantes para o bem-estar do seu cão. As atividades funcionam como complemento para desenvolver foco, calma, autocontrole e conexão, ajudando seu cão a aproveitar melhor os momentos do dia a dia.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-plus" aria-hidden="true">+</span>
-          E se eu tiver dúvidas?
-        </button>
-        <div class="faq-answer">
-          Você pode deixar suas dúvidas diretamente nas aulas, e o Diego responde pessoalmente dentro da plataforma.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-plus" aria-hidden="true">+</span>
-          E se eu não gostar? Tem garantia?
-        </button>
-        <div class="faq-answer">
-          Sim! Você tem 7 dias após a compra para solicitar o reembolso completo, sem perguntas e sem burocracia.
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ===== QUEM É DIEGO LIMA ===== -->
-  <section class="about-section">
-    <div class="about-card">
-      <div class="about-inner">
-
-        <div class="about-photo-col">
-          <img
-            src="https://canilmeucaoeducado.github.io/meucaoeducado/diego_quem_sou_eu.webp"
-            alt="Diego Lima — Veterinário e Especialista em Comportamento Canino"
-            width="300"
-            height="380"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-
-        <div class="about-text-col">
-          <span class="about-eyebrow">Diego Lima — Veterinário e Especialista em Comportamento Canino</span>
-          <h2 class="about-name" style="font-size:clamp(1rem,3.5vw,1.25rem);margin-bottom:12px;font-weight:800;color:var(--preto);line-height:1.3;">Por que eu criei o Programa Meu Cão Educado</h2>
-          <p class="about-bio" style="margin-bottom:10px;">Durante anos trabalhando com comportamento canino, percebi que muitas pessoas tentavam corrigir latidos, puxões e agitação sem resolver a causa do problema.</p>
-          <p class="about-bio" style="margin-bottom:8px;">Por isso passei a focar no desenvolvimento de habilidades como <span style="color:var(--verde-escuro);font-weight:700;">calma</span>, <span style="color:var(--verde-escuro);font-weight:700;">foco</span>, <span style="color:var(--verde-escuro);font-weight:700;">autocontrole</span>, <span style="color:var(--verde-escuro);font-weight:700;">confiança</span> e <span style="color:var(--verde-escuro);font-weight:700;">conexão</span>. Quando essas habilidades evoluem, muitos problemas começam a melhorar naturalmente.</p>
-          <p class="about-bio" style="margin-bottom:14px;">Foi dessa experiência que nasceu o Programa Meu Cão Educado.</p>
-          <ul class="about-items">
-            <li class="about-item"><div class="about-icon"></div><div class="about-item-text">Veterinário desde <strong>2006</strong></div></li>
-            <li class="about-item"><div class="about-icon"></div><div class="about-item-text">Trabalhando com comportamento e adestramento desde <strong>2008</strong></div></li>
-            <li class="about-item"><div class="about-icon"></div><div class="about-item-text">Experiência com cães de <strong>diferentes perfis comportamentais</strong></div></li>
-            <li class="about-item"><div class="about-icon"></div><div class="about-item-text"><strong>Método sem punições ou intimidação</strong></div></li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CTA FINAL ===== -->
-  <div class="btn-cta-wrap">
-    <div class="precta-wrap"><p class="precta-intro">Pequenas atividades.</p><p class="precta-headline">Mais calma, conexão e equilíbrio no dia a dia com seu cão.</p></div>
-    <a href="https://chk.eduzz.com/dwt7yr3b" class="btn-cta" target="_blank" rel="noopener">
-      Quero Ensinar Meu Cão
-    </a>
-    <p class="plans-guarantee">Acesso imediato • Garantia incondicional de 7 dias</p>
-  </div>
-
-  <!-- ===== FOOTER ===== -->
-</main>
-<footer>
-  <p>© 2024 Diego Lima • Veterinário Especialista em Comportamento Canino. Todos os direitos reservados.</p>
-</footer>
-
-<!--
-  ============================================================
-  SCRIPTS — todos no final do body, sem render-blocking
-  ============================================================
--->
 <script>
-/* ---- FAQ — delegação de evento (1 listener em vez de 10) ---- */
-document.addEventListener('click', function(e) {
-  var btn = e.target.closest('.faq-question');
-  if (!btn) return;
-  var item = btn.closest('.faq-item');
-  var isOpen = item.classList.contains('open');
-  // fecha todos
-  document.querySelectorAll('.faq-item.open').forEach(function(el) {
-    el.classList.remove('open');
-    el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1336628157581322');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1336628157581322&ev=PageView&noscript=1"/></noscript>
+
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window,document,"clarity","script","w3fnz1hr1l");
+</script>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --verde-escuro: #3B4D1E;
+  --verde-medio: #5A7A2A;
+  --verde-claro: #8BAF3F;
+  --creme: #F5F0E8;
+  --creme-escuro: #EDE6D6;
+  --texto: #1A1A1A;
+  --texto-suave: #4A4A4A;
+  --branco: #FFFFFF;
+  --destaque: #E8176A;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--creme);
+  color: var(--texto);
+  min-height: 100vh;
+}
+
+.header {
+  background: var(--verde-escuro);
+  padding: 18px 20px;
+  text-align: center;
+}
+.header-brand {
+  color: var(--branco);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.hero {
+  background: var(--verde-escuro);
+  text-align: center;
+  padding: 44px 24px 52px;
+}
+.hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(34px, 8vw, 58px);
+  color: var(--branco);
+  line-height: 1.05;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+.hero h1 span { color: #C5E07A; }
+.hero p {
+  color: var(--branco);
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.container {
+  max-width: 660px;
+  margin: 0 auto;
+  padding: 0 16px 80px;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+  background: var(--branco);
+  border-radius: 14px;
+  padding: 28px 28px 32px;
+  margin-top: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+@media (max-width: 480px) { .card { padding: 22px 18px 26px; } }
+
+.hidden { display: none !important; }
+.visible { animation: slideDown 0.35s ease forwards; }
+
+.step-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--texto);
+  margin-bottom: 14px;
+}
+.q-title {
+  font-size: clamp(16px, 3.5vw, 20px);
+  font-weight: 700;
+  color: var(--texto);
+  line-height: 1.35;
+  margin-bottom: 6px;
+}
+.q-sub {
+  font-size: 14px;
+  color: var(--texto);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.text-input {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1.5px solid #DDD6C8;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  color: var(--texto);
+  background: var(--branco);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.text-input:focus {
+  border-color: var(--destaque);
+  box-shadow: 0 0 0 3px rgba(232,23,106,0.1);
+}
+
+.options-grid { display: grid; gap: 10px; }
+
+.opt-btn {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid #DDD6C8;
+  border-radius: 10px;
+  background: var(--branco);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--texto);
+  cursor: pointer;
+  text-align: left;
+  line-height: 1.4;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+.opt-btn:hover { border-color: var(--verde-medio); background: #EEF5E0; }
+.opt-btn.selected {
+  border-color: var(--destaque);
+  background: var(--destaque);
+  color: var(--branco);
+}
+
+.card-diag {
+  background: var(--verde-escuro);
+  border-radius: 14px;
+  padding: 28px 28px 32px;
+  margin-top: 16px;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.15);
+  color: var(--branco);
+}
+@media (max-width: 480px) { .card-diag { padding: 22px 18px 26px; } }
+
+.diag-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--branco);
+  margin-bottom: 12px;
+}
+.diag-body {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--branco);
+  margin-bottom: 10px;
+}
+.diag-body:last-child { margin-bottom: 0; }
+
+.card-alert {
+  background: var(--verde-escuro);
+  border-radius: 14px;
+  padding: 26px 26px 28px;
+  margin-top: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  color: var(--branco);
+}
+@media (max-width: 480px) { .card-alert { padding: 20px 18px 22px; } }
+.card-alert h3 { font-size: clamp(15px, 3.5vw, 17px); font-weight: 700; margin-bottom: 10px; color: var(--branco); }
+.card-alert p  { font-size: 14px; line-height: 1.7; color: var(--branco); }
+.card-alert p + p { margin-top: 10px; }
+
+.card-offer {
+  background: var(--branco);
+  border-radius: 14px;
+  padding: 32px 28px 36px;
+  margin-top: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+@media (max-width: 480px) { .card-offer { padding: 24px 18px 28px; } }
+
+.offer-tag {
+  display: inline-block;
+  background: #FFF0F5;
+  color: var(--destaque);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 99px;
+  margin-bottom: 14px;
+}
+.offer-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(24px, 5vw, 36px);
+  color: var(--verde-escuro);
+  line-height: 1.1;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+.offer-intro {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--texto);
+  margin-bottom: 24px;
+}
+.offer-urgency {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--texto);
+  line-height: 1.6;
+  margin-bottom: 26px;
+  padding: 14px 16px;
+  background: var(--creme);
+  border-radius: 8px;
+  border-left: 3px solid var(--verde-claro);
+}
+
+.btn-cta {
+  display: block;
+  width: 100%;
+  padding: 20px;
+  background: var(--destaque);
+  color: var(--branco);
+  text-decoration: none;
+  border-radius: 12px;
+  text-align: center;
+  transition: background 0.2s, transform 0.1s;
+}
+.btn-cta:hover { background: #c4115a; }
+.btn-cta:active { transform: scale(0.98); }
+.btn-cta-l1 { display: block; font-size: 17px; font-weight: 700; letter-spacing: 0.5px; }
+.btn-cta-l2 { display: block; font-size: 13px; font-weight: 500; opacity: 0.9; margin-top: 3px; }
+
+.footer-brand {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 12px;
+  color: var(--texto);
+}
+
+.hero-speed {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #C5E07A;
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span class="header-brand">Diego Lima — Veterinário e Especialista em Comportamento Canino</span>
+</div>
+
+<div class="hero">
+  <h1>Descubra o que está deixando seu cão <span>agitado, distraído</span> ou <span>desconectado</span> de você</h1>
+  <p>Responda algumas perguntas rápidas e descubra qual habilidade seu cão precisa desenvolver primeiro.</p>
+  <span class="hero-speed">Leva menos de 2 minutos</span>
+</div>
+
+<div class="container">
+
+  <div class="card visible" id="card1">
+    <div class="step-label">Pergunta 1 de 7</div>
+    <div class="q-title">Vamos começar pelo seu cão. Como ele se chama?</div>
+    <div class="q-sub">Vou usar o nome dele durante o diagnóstico.</div>
+    <input class="text-input" type="text" id="input-nome" placeholder="Ex: Rex, Luna, Thor..." autocomplete="off">
+  </div>
+
+  <div class="card hidden" id="card-sexo">
+    <div class="step-label">Pergunta 2 de 7</div>
+    <div class="q-title" id="sexo-title">O seu cão é:</div>
+    <div class="options-grid">
+      <button class="opt-btn" onclick="pickSexo('macho',this)">Macho</button>
+      <button class="opt-btn" onclick="pickSexo('femea',this)">Fêmea</button>
+    </div>
+  </div>
+
+  <div class="card hidden" id="card-idade">
+    <div class="step-label">Pergunta 3 de 7</div>
+    <div class="q-title" id="idade-title">Quantos anos tem?</div>
+    <div class="options-grid">
+      <button class="opt-btn" onclick="pickIdade('Filhote',this)">Filhote (menos de 6 meses)</button>
+      <button class="opt-btn" onclick="pickIdade('Adolescente',this)">Adolescente (6 meses a 2 anos)</button>
+      <button class="opt-btn" onclick="pickIdade('Adulto',this)">Adulto (2 a 7 anos)</button>
+      <button class="opt-btn" onclick="pickIdade('Idoso',this)">Idoso (mais de 7 anos)</button>
+    </div>
+  </div>
+
+  <div class="card hidden" id="card2">
+    <div class="step-label">Pergunta 4 de 7</div>
+    <div class="q-title" id="q2-title">Qual é a maior dificuldade que você enfrenta hoje?</div>
+    <div class="q-sub">Escolha a opção que mais se parece com a sua situação.</div>
+    <div class="options-grid" id="q2-opts"></div>
+  </div>
+
+  <div class="card hidden" id="card3">
+    <div class="step-label">Pergunta 5 de 7</div>
+    <div class="q-title" id="q3-title"></div>
+    <div class="q-sub">Escolha a opção mais próxima.</div>
+    <div class="options-grid" id="q3-opts"></div>
+  </div>
+
+  <div class="card hidden" id="card4">
+    <div class="step-label">Pergunta 6 de 7</div>
+    <div class="q-title" id="q4-title"></div>
+    <div class="q-sub">Escolha a descrição que melhor define o que acontece.</div>
+    <div class="options-grid" id="q4-opts"></div>
+  </div>
+
+  <div class="card hidden" id="card5">
+    <div class="step-label">Pergunta 7 de 7</div>
+    <div class="q-title" id="q5-title"></div>
+    <div class="q-sub">Escolha o que faria mais diferença no dia a dia.</div>
+    <div class="options-grid" id="q5-opts"></div>
+  </div>
+
+  <div class="card-diag hidden" id="res-diag">
+    <div class="diag-label" id="res-label"></div>
+    <p class="diag-body" id="res-p1"></p>
+    <p class="diag-body" id="res-p2"></p>
+    <p class="diag-body" id="res-p3"></p>
+    <p class="diag-body" id="res-p4"></p>
+  </div>
+
+  <div class="card-alert hidden" id="res-alert">
+    <h3>A boa notícia</h3>
+    <p>O comportamento do seu cão não muda apenas com mais passeios ou repetindo comandos.</p>
+    <p>Calma, foco, conexão e autocontrole são habilidades que podem ser desenvolvidas através de atividades simples aplicadas no dia a dia. Foi exatamente para isso que eu criei o Programa Meu Cão Educado.</p>
+  </div>
+
+  <div class="card-offer hidden" id="res-offer">
+    <div class="offer-tag">Programa completo</div>
+    <div class="offer-title">Programa Meu Cão Educado</div>
+    <p class="offer-intro">Um programa passo a passo para desenvolver calma, foco, conexão e autocontrole no seu cão através de atividades simples que cabem na sua rotina.</p>
+    <div class="offer-urgency" id="res-urgency"></div>
+    <a class="btn-cta" href="https://canilmeucaoeducado.github.io/meucaoeducado/" target="_blank">
+      <span class="btn-cta-l1">Conhecer o Programa Meu Cão Educado</span>
+      <span class="btn-cta-l2">Acessar agora</span>
+    </a>
+    <div class="footer-brand">Diego Lima — Veterinário e Especialista em Comportamento Canino • @vetadestradordiego</div>
+  </div>
+
+</div>
+
+<script>
+var nm = '';
+var sexo = 'macho';
+var idade = '';
+var currentPath = '';
+var currentResult = '';
+var nameTimer;
+
+function art(masc, fem) { return sexo === 'femea' ? fem : masc; }
+
+var PATHS = {
+  passeios: {
+    q3title: function(n){ return 'O que mais acontece durante os passeios com ' + n + '?'; },
+    q3opts: [
+      'Puxa a guia o tempo todo',
+      'Fica agitado quando vê outros cães',
+      'Ignora completamente quando eu chamo',
+      'Quer farejar tudo e não avança',
+      'Parece não saber que eu estou ali'
+    ],
+    q4title: function(n){ return 'Nesses momentos, o que mais parece com ' + n + '?'; },
+    q4opts: [
+      { text: 'Fica acelerado, tenso e difícil de controlar', result: 'calma' },
+      { text: 'Reage com muita intensidade a estímulos específicos', result: 'regulacao' },
+      { text: 'Parece esquecer completamente que eu existo', result: 'foco' },
+      { text: 'O problema aparece só na rua, em casa é bem diferente', result: 'passeios' }
+    ],
+    q5title: function(n){ return 'O que você gostaria que mudasse primeiro nos passeios com ' + n + '?'; },
+    q5opts: [
+      'Passear sem puxar',
+      'Mais atenção em mim durante os passeios',
+      'Mais calma perto de outros cães',
+      'Mais conexão comigo na rua',
+      'Mais autocontrole no geral'
+    ]
+  },
+  reatividade: {
+    q3title: function(n){ return 'O que mais costuma disparar essa reação em ' + n + '?'; },
+    q3opts: [
+      'Outros cães',
+      'Pessoas na rua ou visitas em casa',
+      'Barulhos como motos, carros ou buzinas',
+      'Coisas que aparecem de repente',
+      'Várias coisas diferentes, difícil prever'
+    ],
+    q4title: function(n){ return 'Quando isso acontece, o que mais parece com ' + n + '?'; },
+    q4opts: [
+      { text: 'Reage com muita intensidade e demora para se acalmar', result: 'regulacao' },
+      { text: 'Fica acelerado mesmo fora dessas situações', result: 'calma' },
+      { text: 'Nos momentos de reação, parece que eu deixo de existir', result: 'foco' },
+      { text: 'As reações acontecem principalmente nos passeios', result: 'passeios' }
+    ],
+    q5title: function(){ return 'O que você gostaria que mudasse primeiro?'; },
+    q5opts: [
+      'Menos latidos e reações exageradas',
+      'Mais calma diante de estímulos',
+      'Mais atenção em mim nesses momentos',
+      'Menos impulsividade',
+      'Mais equilíbrio emocional'
+    ]
+  },
+  calma: {
+    q3title: function(n){ return 'O que mais parece com ' + n + ' dentro de casa?'; },
+    q3opts: [
+      'Anda pela casa o tempo todo sem conseguir parar',
+      'Busca atenção constantemente, não se ocupa sozinho',
+      'Se agita por qualquer coisa pequena',
+      'Tem dificuldade para descansar mesmo depois do passeio',
+      'Parece sempre ligado, nunca desacelera'
+    ],
+    q4title: function(n){ return 'Quando ' + n + ' está agitado, o que mais acontece?'; },
+    q4opts: [
+      { text: 'Fica acelerado sem motivo claro, difícil de desligar', result: 'calma' },
+      { text: 'Reage de forma intensa quando algo acontece ao redor', result: 'regulacao' },
+      { text: 'Só desacelera quando estou com atenção total nele', result: 'foco' },
+      { text: 'Em casa até vai, mas nos passeios piora muito', result: 'passeios' }
+    ],
+    q5title: function(){ return 'O que você gostaria que mudasse primeiro?'; },
+    q5opts: [
+      'Mais calma no dia a dia',
+      'Mais autocontrole',
+      'Conseguir relaxar e descansar',
+      'Menos ansiedade',
+      'Mais equilíbrio emocional'
+    ]
+  },
+  foco: {
+    q3title: function(n){ return 'Quando ' + n + ' ignora você, onde isso acontece com mais frequência?'; },
+    q3opts: [
+      'Durante os passeios',
+      'Quando está farejando algo',
+      'Quando vê outros cães ou pessoas',
+      'Dentro de casa também',
+      'Em qualquer lugar, não importa o ambiente'
+    ],
+    q4title: function(n){ return 'Nesses momentos, o que mais parece com ' + n + '?'; },
+    q4opts: [
+      { text: 'Parece que simplesmente não me vê, foco total em outra coisa', result: 'foco' },
+      { text: 'Fica acelerado e aí perde o foco em mim', result: 'calma' },
+      { text: 'Reage a algo específico antes de conseguir me ouvir', result: 'regulacao' },
+      { text: 'Ignora principalmente na rua, em casa presta mais atenção', result: 'passeios' }
+    ],
+    q5title: function(){ return 'O que você gostaria que mudasse primeiro?'; },
+    q5opts: [
+      'Mais atenção em mim quando eu chamo',
+      'Mais conexão no dia a dia',
+      'Mais foco durante os passeios',
+      'Mais facilidade para me escutar',
+      'Mais autocontrole diante de distrações'
+    ]
+  }
+};
+
+var RESULTS = {
+  foco: {
+    label: 'HABILIDADE PRINCIPAL: FOCO E CONEXÃO',
+    p1: function(n){ return 'O principal desafio ' + art('do','da') + ' ' + n + ' hoje parece ser manter a atenção em você e perceber que a sua presença vale a pena, mesmo quando existem coisas mais interessantes ao redor.'; },
+    p2: function(){ return 'Quanto mais estímulos aparecem, mais difícil fica para ' + art('ele','ela') + ' processar suas orientações e escolher se conectar com você.'; },
+    p3: 'Foco e conexão são habilidades que se desenvolvem juntas e costumam transformar completamente a convivência e os passeios.',
+    p4: null,
+    urgency: function(n){ return 'Quando ' + n + ' aprende que vale a pena prestar atenção em você, tudo na convivência fica mais leve.'; }
+  },
+  calma: {
+    label: 'HABILIDADE PRINCIPAL: CALMA',
+    p1: function(n){ return 'O que mais ajudaria ' + art('o','a') + ' ' + n + ' neste momento é desenvolver mais calma e autocontrole.'; },
+    p2: function(){ return 'Quando um cão vive constantemente acelerado, ' + art('ele','ela') + ' encontra mais dificuldade para relaxar, aprender e lidar com os desafios do dia a dia.'; },
+    p3: function(){ return 'Antes de qualquer outra coisa, precisamos ajudar o cérebro ' + art('dele','dela') + ' a desacelerar.'; },
+    p4: 'Quando isso acontece, muitos comportamentos difíceis começam a melhorar naturalmente.',
+    urgency: function(n){ return art('Um','Uma') + ' ' + n + ' mais calm' + art('o','a') + ' aprende com mais facilidade e responde melhor em todas as situações do cotidiano.'; }
+  },
+  regulacao: {
+    label: 'HABILIDADE PRINCIPAL: REGULAÇÃO EMOCIONAL',
+    p1: function(n){ return 'O comportamento ' + art('do','da') + ' ' + n + ' sugere dificuldade para regular a própria excitação quando encontra estímulos importantes.'; },
+    p2: 'Isso pode aparecer através de latidos, impulsividade, ansiedade ou reações exageradas diante de outros cães, pessoas ou barulhos.',
+    p3: 'O objetivo não é apenas controlar o comportamento, mas desenvolver mais equilíbrio emocional de dentro para fora.',
+    p4: null,
+    urgency: function(n){ return 'Desenvolver regulação emocional n' + art('o','a') + ' ' + n + ' torna os passeios e os encontros com outros cães muito mais tranquilos.'; }
+  },
+  passeios: {
+    label: 'HABILIDADE PRINCIPAL: PASSEIOS MAIS TRANQUILOS',
+    p1: function(n){ return 'O principal desafio ' + art('do','da') + ' ' + n + ' hoje parece estar relacionado à forma como ' + art('ele','ela') + ' lida com o ambiente durante os passeios.'; },
+    p2: 'Cheiros, movimentos, outros cães e estímulos ao redor acabam sendo mais interessantes do que prestar atenção em você.',
+    p3: function(){ return 'Isso não significa que ' + art('ele','ela') + ' esteja sendo teimoso' + art('','a') + '. Significa apenas que ainda não desenvolveu as habilidades necessárias para lidar com tantas distrações ao mesmo tempo.'; },
+    p4: 'Desenvolver foco, calma e conexão durante os passeios costuma gerar mudanças importantes dentro e fora de casa.',
+    urgency: function(n){ return 'Passeios mais tranquilos são possíveis. ' + art('O','A') + ' ' + n + ' pode aprender a caminhar com mais atenção em você mesmo em ambientes movimentados.'; }
+  }
+};
+
+function showCard(id) {
+  var el = document.getElementById(id);
+  if (!el.classList.contains('hidden')) return;
+  el.classList.remove('hidden');
+  void el.offsetWidth;
+  el.classList.add('visible');
+  setTimeout(function(){ el.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 60);
+}
+
+function markSelected(btn) {
+  btn.parentElement.querySelectorAll('.opt-btn').forEach(function(b){ b.classList.remove('selected'); });
+  btn.classList.add('selected');
+}
+
+function buildOpts(containerId, opts, clickFn) {
+  var c = document.getElementById(containerId);
+  c.innerHTML = '';
+  opts.forEach(function(o) {
+    var b = document.createElement('button');
+    b.className = 'opt-btn';
+    b.textContent = typeof o === 'string' ? o : o.text;
+    b.onclick = function(){ clickFn(o, b); };
+    c.appendChild(b);
   });
-  // abre o clicado (se estava fechado)
-  if (!isOpen) {
-    item.classList.add('open');
-    btn.setAttribute('aria-expanded', 'true');
+}
+
+var currentCaminhoTexto = '';
+var currentDiagTexto = '';
+var currentDesejoTexto = '';
+
+var DIAG_LABELS = {
+  foco: 'Foco e Conexão',
+  calma: 'Calma',
+  regulacao: 'Regulação Emocional',
+  passeios: 'Passeios Mais Tranquilos'
+};
+
+var CAMINHO_LABELS = {
+  passeios: 'Puxa muito no passeio',
+  reatividade: 'Late ou reage a tudo',
+  calma: 'Não consegue relaxar / Acelerado',
+  foco: 'Ignora quando eu chamo'
+};
+  clearTimeout(nameTimer);
+  var val = this.value.trim();
+  nm = val;
+  if (val.length >= 2) {
+    nameTimer = setTimeout(function(){
+      document.getElementById('sexo-title').textContent = nm + ' é macho ou fêmea?';
+      showCard('card-sexo');
+    }, 350);
   }
 });
 
-/* ---- Carrossel ---- */
-(function() {
-  var carousel = document.getElementById('proofCarousel');
-  var dotsWrap = document.getElementById('proofDots');
-  if (!carousel || !dotsWrap) return;
+function pickSexo(s, btn) {
+  markSelected(btn);
+  sexo = s;
+  document.getElementById('idade-title').textContent = 'Quantos anos tem ' + nm + '?';
+  setTimeout(function(){ showCard('card-idade'); }, 200);
+}
 
-  var cards = carousel.querySelectorAll('.proof-card');
-  if (!cards.length) return;
-
-  /* Dots */
-  var frag = document.createDocumentFragment();
-  cards.forEach(function(_, i) {
-    var dot = document.createElement('div');
-    dot.className = 'proof-dot' + (i === 0 ? ' active' : '');
-    dot.addEventListener('click', function() {
-      carousel.scrollTo({ left: cards[i].offsetLeft - 20, behavior: 'smooth' });
-    });
-    frag.appendChild(dot);
-  });
-  dotsWrap.appendChild(frag);
-
-  /* Atualiza dot ativo — throttled com rAF */
-  var ticking = false;
-  carousel.addEventListener('scroll', function() {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(function() {
-      var left = carousel.getBoundingClientRect().left;
-      var closest = 0, minDist = Infinity;
-      cards.forEach(function(c, i) {
-        var d = Math.abs(c.getBoundingClientRect().left - left);
-        if (d < minDist) { minDist = d; closest = i; }
+function pickIdade(i, btn) {
+  markSelected(btn);
+  idade = i;
+  document.getElementById('q2-title').textContent = 'Qual é a maior dificuldade que você enfrenta hoje com ' + nm + '?';
+  buildOpts('q2-opts', [
+    { text: 'Puxa muito no passeio', path: 'passeios' },
+    { text: 'Late ou reage a tudo', path: 'reatividade' },
+    { text: 'Não consegue relaxar dentro de casa', path: 'calma' },
+    { text: 'Ignora quando eu chamo', path: 'foco' },
+    { text: 'Parece acelerado o tempo inteiro', path: 'calma' }
+  ], function(o, btn2){
+    markSelected(btn2);
+    currentPath = o.path;
+    currentCaminhoTexto = o.text;
+    var p = PATHS[currentPath];
+    document.getElementById('q3-title').textContent = p.q3title(nm);
+    buildOpts('q3-opts', p.q3opts, function(opt, b){
+      markSelected(b);
+      var p2 = PATHS[currentPath];
+      document.getElementById('q4-title').textContent = p2.q4title(nm);
+      buildOpts('q4-opts', p2.q4opts, function(o4, b4){
+        markSelected(b4);
+        currentResult = o4.result;
+        currentDiagTexto = DIAG_LABELS[o4.result];
+        var p3 = PATHS[currentPath];
+        document.getElementById('q5-title').textContent = p3.q5title(nm);
+        buildOpts('q5-opts', p3.q5opts, function(o5, b5){
+          markSelected(b5);
+          currentDesejoTexto = typeof o5 === 'string' ? o5 : o5.text;
+          setTimeout(showResult, 300);
+        });
+        setTimeout(function(){ showCard('card5'); }, 200);
       });
-      dotsWrap.querySelectorAll('.proof-dot').forEach(function(d, i) {
-        d.classList.toggle('active', i === closest);
-      });
-      ticking = false;
+      setTimeout(function(){ showCard('card4'); }, 200);
     });
-  }, { passive: true });
-
-  /* Botões de seta */
-  document.getElementById('proofPrev').addEventListener('click', function() {
-    var w = (carousel.querySelector('.proof-card').offsetWidth || 280) + 14;
-    carousel.scrollBy({ left: -w, behavior: 'smooth' });
+    setTimeout(function(){ showCard('card3'); }, 200);
   });
-  document.getElementById('proofNext').addEventListener('click', function() {
-    var w = (carousel.querySelector('.proof-card').offsetWidth || 280) + 14;
-    carousel.scrollBy({ left: w, behavior: 'smooth' });
+  setTimeout(function(){ showCard('card2'); }, 200);
+}
+
+function showResult() {
+  var r = RESULTS[currentResult];
+  document.getElementById('res-label').textContent = r.label;
+  document.getElementById('res-p1').textContent = typeof r.p1 === 'function' ? r.p1(nm) : r.p1;
+  document.getElementById('res-p2').textContent = typeof r.p2 === 'function' ? r.p2(nm) : r.p2;
+  document.getElementById('res-p3').textContent = typeof r.p3 === 'function' ? r.p3(nm) : r.p3;
+  var p4el = document.getElementById('res-p4');
+  if (r.p4) {
+    p4el.textContent = typeof r.p4 === 'function' ? r.p4(nm) : r.p4;
+    p4el.style.display = '';
+  } else {
+    p4el.style.display = 'none';
+  }
+  document.getElementById('res-urgency').textContent = r.urgency(nm);
+
+  var seq = ['res-diag', 'res-alert', 'res-offer'];
+  seq.forEach(function(id, i){
+    setTimeout(function(){ showCard(id); }, i * 280);
   });
-})();
+  setTimeout(function(){
+    document.getElementById('res-diag').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, seq.length * 280 + 100);
 
-/* ---- Meta Pixel + Clarity carregados abaixo ---- */
+  if (typeof fbq !== 'undefined') {
+    fbq('track', 'Lead', { content_name: currentResult });
+  }
+
+  fetch('https://script.google.com/macros/s/AKfycbzG1NuHh2N-qnlE8DfQ5lQjyauJm9McknM4PLnguYknayUERVRjmqmKN_FrciYxHBiu/exec', {
+    method: 'POST',
+    body: JSON.stringify({
+      nome: nm,
+      sexo: sexo === 'femea' ? 'Fêmea' : 'Macho',
+      idade: idade,
+      caminho: currentCaminhoTexto,
+      diagnostico: currentDiagTexto,
+      desejo: currentDesejoTexto
+    })
+  }).catch(function(){});
+}
 </script>
-
-<!-- Meta Pixel + Microsoft Clarity — diferidos para depois do load -->
-<script>
-window.addEventListener('load', function() {
-  /* Meta Pixel */
-  !function(f,b,e,v,n,t,s){
-    if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)
-  }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init','1336628157581322');
-  fbq('track','PageView');
-
-  /* Microsoft Clarity */
-  (function(c,l,a,r,i,t,y){
-    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-    t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;
-    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-  })(window,document,'clarity','script','w3fnz1hr1l');
-}, { once: true });
-</script>
-<noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1336628157581322&ev=PageView&noscript=1"
-/></noscript>
-
 </body>
 </html>
