@@ -562,6 +562,7 @@ function buildOpts(containerId, opts, clickFn) {
 }
 
 var currentCaminhoTexto = '';
+var currentContextoTexto = '';
 var currentDiagTexto = '';
 var currentDesejoTexto = '';
 
@@ -616,6 +617,7 @@ function pickIdade(i, btn) {
     document.getElementById('q3-title').textContent = p.q3title(nm);
     buildOpts('q3-opts', p.q3opts, function(opt, b){
       markSelected(b);
+      currentContextoTexto = typeof opt === 'string' ? opt : opt.text;
       var p2 = PATHS[currentPath];
       document.getElementById('q4-title').textContent = p2.q4title(nm);
       buildOpts('q4-opts', p2.q4opts, function(o4, b4){
@@ -672,6 +674,7 @@ function showResult() {
       sexo: sexo === 'femea' ? 'Fêmea' : 'Macho',
       idade: idade,
       caminho: currentCaminhoTexto,
+      contexto: currentContextoTexto,
       diagnostico: currentDiagTexto,
       desejo: currentDesejoTexto
     })
