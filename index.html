@@ -1077,7 +1077,7 @@ window.addEventListener('load', function() {
   <p class="hero-sub">Tenha acesso aos mesmos exercícios que eu uso nos meus atendimentos presenciais para deixar seu cachorro mais calmo, obediente e educado em menos de 10 minutos por dia.</p>
 
   <div class="hero-mockup">
-    <img src="https://canilmeucaoeducado.github.io/meucaoeducado/mockup_meucaoeducado.webp" alt="Prévia do Programa Meu Cão Educado" width="620" height="400" fetchpriority="high" decoding="async" style="width:100%; max-width:620px; display:block; margin:0 auto;">
+    <img src="https://canilmeucaoeducado.github.io/meucaoeducado/mockup_meucaoeducado.webp" alt="Prévia do Programa Meu Cão Educado" width="620" height="auto" fetchpriority="high" decoding="async" style="width:100%; max-width:620px; height:auto; display:block; margin:0 auto;">
     <p style="margin-top:12px; font-size:13px; color:#4B3C1E; text-align:center;">Criado por <strong>Diego Lima</strong> · Veterinário Especialista em Comportamento Canino</p>
   </div>
 
@@ -1285,7 +1285,7 @@ window.addEventListener('load', function() {
       <h2 class="section-title">Confira uma prévia <span class="orange">do que você vai receber:</span></h2>
     </div>
     <div class="reveal" style="max-width: 800px; margin: 0 auto; border-radius: 16px; overflow: hidden; border: 1px solid rgba(90,107,45,0.20); box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
-      <img src="https://canilmeucaoeducado.github.io/meucaoeducado/previameio.webp" alt="Prévia das atividades do Programa Meu Cão Educado" width="800" height="450" loading="lazy" decoding="async" style="width:100%; display:block;">
+      <img src="https://canilmeucaoeducado.github.io/meucaoeducado/previameio.webp" alt="Prévia das atividades do Programa Meu Cão Educado" width="800" height="auto" loading="lazy" decoding="async" style="width:100%; height:auto; display:block;">
     </div>
 
     <div class="reveal" style="max-width: 800px; margin: 40px auto 0; border-radius: 16px; overflow: hidden; border: 1px solid rgba(90,107,45,0.20); box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
@@ -1821,10 +1821,6 @@ window.addEventListener('load', function() {
 </footer>
 
 <!-- ============ STICKY BAR ============ -->
-<div class="sticky-bar" id="stickyBar">
-  <span>Por apenas <strong>R$ 197,00</strong></span>
-  <a href="https://chk.eduzz.com/lpos7ejv" class="btn-sm">QUERO MEU CÃO MAIS CALMO</a>
-</div>
 
 <script>
   // FAQ toggle
@@ -1845,22 +1841,6 @@ window.addEventListener('load', function() {
     });
   }, { threshold: 0.12 });
   revealEls.forEach(el => observer.observe(el));
-
-  // Sticky bar — usa IntersectionObserver para evitar reflow no scroll handler
-  (function() {
-    const stickyBar = document.getElementById('stickyBar');
-    const heroSection = document.querySelector('.hero');
-    if (!stickyBar || !heroSection) return;
-    const stickyObserver = new IntersectionObserver(
-      ([entry]) => {
-        stickyBar.classList.toggle('show', !entry.isIntersecting);
-      },
-      { threshold: 0 }
-    );
-    stickyObserver.observe(heroSection);
-  })();
-
-
 
   // Vídeo depoimento Rosangela — play/pause com clique
   function toggleVideoRosangela(card) {
