@@ -154,6 +154,7 @@
   }
   .never-list li::before{content:'✕';position:absolute;left:0;color:var(--clay);font-weight:800;}
   .never-list li.positive::before{content:'✓';color:var(--forest);}
+  .never-list li.strike{text-decoration:line-through;text-decoration-color:#000;text-decoration-thickness:1px;opacity:.85;}
 
   /* How it works steps */
   .flow{display:flex;flex-direction:column;gap:0;margin-top:44px;}
@@ -394,9 +395,9 @@ window.addEventListener('load', function() {
     <span class="eyebrow">O que muda a partir de agora</span>
     <h2 class="title">Você deixa de colecionar dicas soltas e passa a seguir um método.</h2>
     <ul class="never-list">
-      <li>Esperar que ele mude sozinho com o tempo.</li>
-      <li>Testar uma dica diferente toda semana.</li>
-      <li>Ficar sem saber o que fazer quando um problema aparece.</li>
+      <li class="strike">Esperar que ele mude sozinho com o tempo.</li>
+      <li class="strike">Testar uma dica diferente toda semana.</li>
+      <li class="strike">Ficar sem saber o que fazer quando um problema aparece.</li>
       <li class="positive">Seguir um programa com passo a passo claro para desenvolver calma, obediência e autocontrole.</li>
     </ul>
   </div>
