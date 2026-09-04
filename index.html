@@ -2,7 +2,8 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#FFFFFF">
 <title>Programa Meu Cão Educado — Diego Lima, Veterinário</title>
 
 <meta name="description" content="Esse é você e o seu cachorro hoje. Uma história em desenhos sobre o que muda quando ele aprende o que fazer.">
@@ -23,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="https://canilmeucaoeducado.github.io">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Patrick+Hand&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Patrick+Hand&display=swap" rel="stylesheet">
 
 <style>
   :root{
@@ -46,6 +47,8 @@
     color:var(--verde);
     line-height:1.6;
     overflow-x:hidden;
+    -webkit-tap-highlight-color:rgba(90,107,45,0.12);
+    text-rendering:optimizeLegibility;
   }
   img,svg{max-width:100%;display:block;}
   .wrap{width:100%;max-width:620px;margin:0 auto;padding:0 22px;}
@@ -170,6 +173,9 @@
   .carrossel{
     display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
     padding:4px 22px 18px;scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior-x:contain;
+    scroll-padding-left:22px;
   }
   .carrossel::-webkit-scrollbar{display:none;}
   .card-prova{flex:0 0 auto;scroll-snap-align:center;border-radius:16px;overflow:hidden;
@@ -211,6 +217,50 @@
   @media (prefers-reduced-motion: reduce){
     .reveal{opacity:1;transform:none;transition:none;}
     html{scroll-behavior:auto;}
+  }
+
+  /* ---------- celular ---------- */
+  @media(max-width:640px){
+    .wrap{padding:0 18px;}
+
+    .topo-selo{padding:24px 0 2px;}
+    .topo-selo span{padding:10px 20px;font-size:11.5px;letter-spacing:.14em;}
+
+    .historia{padding:8px 0 12px;}
+    .quadro{padding:30px 0;}
+    .fala{line-height:1.14;}
+    .apoio{margin-top:13px;font-size:16.5px;line-height:1.6;}
+    .marcador{margin-bottom:15px;}
+    .desenho{margin-top:20px;max-width:320px;}
+    .desenho.antes{margin:0 auto 20px;}
+
+    .virada{padding:32px 20px;border-radius:18px;margin:8px auto;}
+
+    .secao{padding:46px 0;}
+    .oferta{padding:46px 0 40px;}
+    .oferta-card{padding:32px 20px 28px;border-radius:20px;}
+    .oferta-preco{margin-top:20px;}
+    .oferta-inclui{margin:22px auto 26px;gap:10px;}
+    .oferta-inclui li{font-size:15.5px;}
+
+    .fecho{padding:52px 0 56px;}
+    .fecho p{margin:16px auto 0;font-size:16.5px;}
+
+    .carrossel{gap:12px;padding:4px 18px 16px;scroll-padding-left:18px;}
+    .card-prova img{width:min(78vw,300px);}
+    .bolinhas{gap:7px;margin-top:12px;padding:0 18px;}
+
+    .btn{padding:18px 26px;font-size:16.5px;}
+
+    footer{padding:22px 18px calc(28px + env(safe-area-inset-bottom));}
+  }
+
+  @media(max-width:360px){
+    .wrap{padding:0 15px;}
+    .quadro{padding:26px 0;}
+    .desenho{max-width:280px;}
+    .oferta-card{padding:28px 16px 24px;}
+    .oferta-inclui li{font-size:15px;}
   }
 </style>
 
