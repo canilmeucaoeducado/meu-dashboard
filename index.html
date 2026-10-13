@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
   <title>Plano de 4 Semanas | Xixi e Cocô no Lugar Certo</title>
 
@@ -504,7 +504,103 @@
         font-size: 16px;
       }
     }
+    /* ===== OTIMIZAÇÃO MOBILE ===== */
+    .cta { touch-action: manipulation; }
+    .cta:focus-visible,
+    .proof-arrow:focus-visible,
+    .proof-dot:focus-visible {
+      outline: 3px solid #242424;
+      outline-offset: 3px;
+    }
+
+    .problem p,
+    .solution-intro,
+    .final p { text-wrap: pretty; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .cta, .proof-dot { transition: none; }
+    }
+
+    @media (max-width: 768px) {
+
+      /* respeita a área segura em celulares com notch (paisagem) */
+      .container {
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
+      }
+
+      .hero {
+        padding-top: max(40px, calc(24px + env(safe-area-inset-top, 0px)));
+      }
+
+      .hero-credit {
+        font-size: 15px;
+        margin-top: 16px;
+      }
+
+      /* seção do problema: texto longo, leitura mais confortável */
+      .problem p {
+        font-size: 17px;
+        line-height: 1.65;
+        margin-bottom: 18px;
+        color: #e8e8e8;
+      }
+
+      .problem p:last-child { margin-bottom: 0; }
+
+      .solution-intro {
+        line-height: 1.6;
+      }
+
+      .week strong { font-size: 17px; }
+
+      .week p { line-height: 1.5; }
+
+      /* carrossel: deslize mais firme e sem travar a rolagem da página */
+      .proof-carousel {
+        scroll-padding-right: 20px;
+      }
+
+      .proof-dots { margin-top: 8px; }
+
+      .proof-dot {
+        width: 28px;
+        height: 28px;
+        padding: 10px;
+      }
+
+      .learn-item { line-height: 1.45; }
+
+      .cta {
+        min-height: 58px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .note {
+        font-size: 14px !important;
+        line-height: 1.5;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .container {
+        padding-left: max(16px, env(safe-area-inset-left));
+        padding-right: max(16px, env(safe-area-inset-right));
+      }
+
+      .problem p { font-size: 16px; }
+
+      .week { padding: 16px; }
+
+      .learn-item { padding: 13px 14px; }
+    }
+  
   </style>
+  <link rel="preconnect" href="https://canilmeucaoeducado.github.io">
   <link rel="dns-prefetch" href="https://connect.facebook.net">
   <link rel="dns-prefetch" href="https://www.clarity.ms">
 
@@ -559,9 +655,10 @@ window.addEventListener('load', function() {
       </h1>
 
       <p class="subheadline">
-        Você limpa, respira fundo e, pouco depois, lá está outra sujeira
-        no chão. Se parece que seu cachorro nunca aprende,
-        você não precisa continuar tentando no escuro.
+        Você coloca o tapetinho no chão, mostra onde ele deve fazer as necessidades
+        e, mesmo assim, ele escolhe outro canto.
+        Se você já tentou de tudo e seu cachorro continua errando,
+        está na hora de seguir um caminho diferente.
       </p>
 
       <p class="hero-credit">
@@ -580,48 +677,39 @@ window.addEventListener('load', function() {
     <div class="container">
 
       <h2>
-        Parece que a casa nunca fica limpa de verdade?
+        Por que seu cachorro continua fazendo as necessidades no lugar errado?
       </h2>
 
       <p>
-        Você coloca o tapete no lugar certo, mostra para o cachorro
-        onde é o banheiro e, mesmo assim, ele faz em outro canto.
+        Quando seu cachorro faz as necessidades no lugar errado, você briga, tenta mostrar de novo o lugar certo e torce para que, da próxima vez, ele acerte.
       </p>
 
       <p>
-        Você limpa o chão, tira o cheiro, respira aliviado.
-        Pouco tempo depois, encontra outra surpresa.
-      </p>
-
-      <ul>
-
-        <li>Ele acerta algumas vezes, você pensa "agora foi!" e, de repente, volta a errar.</li>
-
-        <li>Você dá um pouco mais de liberdade e os acidentes voltam.</li>
-
-        <li>Parece que você vive limpando e nunca consegue manter a casa limpa.</li>
-
-        <li>Você já tentou várias coisas e continua com o mesmo problema.</li>
-
-        <li>Você não sabe mais o que fazer, nem qual erro pode estar cometendo.</li>
-
-      </ul>
-
-      <p>
-        Cansa. Irrita. E dá aquela sensação de impotência:
-        você faz tudo o que pode e parece que nada muda.
+        Mas existe um detalhe que você ainda não percebeu: seu cachorro não nasceu sabendo onde deve fazer xixi e cocô. Ele precisa aprender.
       </p>
 
       <p>
-        Seu cachorro não está fazendo isso para te provocar.
-        Muitas vezes, o que falta não é vontade de aprender.
-        Falta um caminho claro para vocês dois.
+        Enquanto você espera que ele descubra sozinho, os erros continuam se repetindo.
       </p>
 
       <p>
-        Foi por isso que eu organizei meu método em um plano simples
-        e progressivo, para você parar de improvisar e saber o que fazer
-        em cada etapa.
+        Quanto mais liberdade ele tem antes de aprender, mais lugares ficam disponíveis para errar. E brigar não ensina onde ele deveria fazer.
+      </p>
+
+      <p>
+        Então, você acaba preso em um ciclo cansativo: limpa, tenta ensinar, perde a paciência e começa tudo de novo.
+      </p>
+
+      <p>
+        O segredo não é apenas fazer seu cachorro parar de errar, mas criar as condições para ele acertar e aprender com a repetição.
+      </p>
+
+      <p>
+        Você precisa entender por que ele erra, como fazer ele acertar, como evitar novos acidentes e o que fazer quando ele errar.
+      </p>
+
+      <p>
+        Sem um caminho claro para conduzir cada etapa, você continua repetindo as mesmas tentativas e torcendo para que, dessa vez, funcione.
       </p>
 
     </div>
@@ -640,9 +728,10 @@ window.addEventListener('load', function() {
       </h2>
 
       <p class="solution-intro">
-        Em vez de improvisar a cada acidente, você segue etapas.
-        Assim, você sabe o que fazer, acompanha os acertos
-        e entende quando é hora de avançar.
+        Chega de improvisar a cada acidente e ficar sem saber o que fazer depois.
+        No Plano de 4 Semanas, você segue uma sequência de etapas para ensinar
+        seu cachorro a fazer as necessidades no lugar certo, acompanhar a evolução
+        dele e saber quando é hora de avançar.
       </p>
 
       <div class="weeks">
@@ -652,8 +741,8 @@ window.addEventListener('load', function() {
           <strong>Semana 1</strong>
 
           <p>
-            Construir o hábito e aumentar as oportunidades
-            de o cachorro acertar.
+            Preparar o ambiente, construir o hábito
+            e criar oportunidades de acerto.
           </p>
 
         </div>
@@ -664,8 +753,8 @@ window.addEventListener('load', function() {
           <strong>Semana 2</strong>
 
           <p>
-            Criar uma rotina previsível e entender melhor
-            o dia a dia do cachorro.
+            Criar uma rotina previsível e entender os padrões dele
+            para facilitar os acertos.
           </p>
 
         </div>
@@ -676,8 +765,8 @@ window.addEventListener('load', function() {
           <strong>Semana 3</strong>
 
           <p>
-            Fortalecer o comportamento e ajustar
-            o banheiro aos poucos.
+            Fortalecer o aprendizado, reforçar o hábito certo
+            e fazer pequenos ajustes.
           </p>
 
         </div>
@@ -757,33 +846,33 @@ window.addEventListener('load', function() {
     <div class="container">
 
       <h2>
-        O que você vai aprender para sair desse ciclo
+        O que você vai aprender para sair desse ciclo de erros
       </h2>
 
       <div class="learn-list">
 
         <div class="learn-item">
-          ✓ Como preparar o banheiro do seu cachorro para ele entender onde fazer
+          ✓ Como preparar o banheiro do jeito certo.
         </div>
 
         <div class="learn-item">
-          ✓ Como facilitar os acertos e dar a ele mais chances de fazer no lugar certo
+          ✓ Como fazer ele acertar mais vezes.
         </div>
 
         <div class="learn-item">
-          ✓ Como identificar os momentos certos para levar ele ao banheiro, antes de a sujeira aparecer
+          ✓ Como evitar os acidentes.
         </div>
 
         <div class="learn-item">
-          ✓ O que fazer quando ele errar, para você não ficar perdido na hora
+          ✓ O que fazer quando ele errar.
         </div>
 
         <div class="learn-item">
-          ✓ Como aumentar a liberdade sem perder o progresso que vocês já conquistaram
+          ✓ Como saber quando é hora de dar mais liberdade.
         </div>
 
         <div class="learn-item">
-          ✓ Como corrigir os principais erros durante o treinamento
+          ✓ Como corrigir os erros mais comuns.
         </div>
 
       </div>
@@ -800,14 +889,12 @@ window.addEventListener('load', function() {
     <div class="container">
 
       <h2>
-        Chega de limpar, tentar de novo e torcer para dar certo.
+        Chega de ficar tentando e torcendo para dar certo.
       </h2>
 
       <p>
-        Você já limpou muito, já tentou muita coisa e já se cansou
-        de encontrar a mesma sujeira. Agora você pode seguir
-        um plano organizado e saber qual é o próximo passo
-        no treinamento do seu cachorro.
+        Siga meu plano para ensinar seu cachorro
+        a fazer as necessidades no lugar certo.
       </p>
 
       <a
